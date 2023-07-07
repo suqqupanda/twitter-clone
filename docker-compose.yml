@@ -13,7 +13,7 @@ services:
       - ./twitter:/var/www/twitter
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
   db:
-    image: mysql
+    build: ./docker/db
     platform: linux/x86_64
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -22,3 +22,8 @@ services:
       MYSQL_PASSWORD: password
     ports:
       - 3306:3306
+    volumes:
+      - twitter:/var/lib/mysql
+volumes:
+  twitter:
+    driver: local
