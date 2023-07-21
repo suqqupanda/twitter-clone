@@ -4,6 +4,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostRequest;
+use App\Http\Requests\SampleFormRequest;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -17,7 +19,7 @@ class UserController extends Controller
     /**
      * Display the registration view.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function create()
     {
@@ -27,30 +29,37 @@ class UserController extends Controller
     /**
      * Handle an incoming registration request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  PostRequest  $request
+     * @return RedirectResponse
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {   
-        // dd("user");デバック、処理を止められる
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        dd($request->all());
+        // ユーザーモデルインスタンスの作成
+        $userModel = new User();
+        
+        // 新規ユーザーの登録
+        $user = $userModel->register(
+            $request->name,
+            $request->email,
+            $request->password
+        );
 
         event(new Registered($user));
-
+        // 登録後そのままログインするようにしている
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        // return redirect(RouteServiceProvider::HOME);
+        // URL指定はroute関数を使うと良い
+        return redirect(route('home'));
     }
+
+    public function index()
+    {
+        $users = User::all();
+        return view('users', ['users' => $users]);
+    }
+
 }
