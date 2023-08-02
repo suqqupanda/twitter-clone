@@ -19,11 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// 新規登録ページを表示させる
+// 新規登録ページを表示
 Route::get('signup', [UserController::class, 'create'])
                 ->name('signup');
 
-// フォームに入力された情報をデータベースに保存する
+// 新規ユーザーを登録
 Route::post('signup', [UserController::class, 'store']);
 
 Auth::routes();
