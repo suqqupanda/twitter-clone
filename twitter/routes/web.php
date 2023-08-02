@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// 新規登録ページを表示
+Route::get('signup', [UserController::class, 'create'])
+                ->name('signup');
+
+// 新規ユーザーを登録
+Route::post('signup', [UserController::class, 'store']);
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
