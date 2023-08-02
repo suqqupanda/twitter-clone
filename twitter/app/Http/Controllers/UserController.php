@@ -56,10 +56,5 @@ class UserController extends Controller
         return redirect(route('home'));
     }
 
-    public function index()
-    {
-        $users = User::all();
-        return view('users', ['users' => $users]);
-    }
 
 }
