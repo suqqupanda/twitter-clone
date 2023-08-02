@@ -28,4 +28,5 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+// ユーザー一覧を表示
 Route::get('/users', [UserController::class, 'index']);
