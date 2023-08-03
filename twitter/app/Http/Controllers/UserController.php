@@ -36,7 +36,7 @@ class UserController extends Controller
      */
     public function store(PostRequest $request)
     {   
-        dd($request->all());
+
         // ユーザーモデルインスタンスの作成
         $userModel = new User();
         
@@ -58,7 +58,10 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::all();
+        $userModel = new User();
+
+        // ユーザー一覧を取得して表示
+        $users = $userModel->getAllUsers();
         return view('users', ['users' => $users]);
     }
 
