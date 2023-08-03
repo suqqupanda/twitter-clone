@@ -62,7 +62,7 @@ class UserController extends Controller
 
         // ユーザー一覧を取得して表示
         $users = $userModel->getAllUsers();
-        return view('users', ['users' => $users]);
+        return view('user.users', ['users' => $users]);
     }
 
 }
