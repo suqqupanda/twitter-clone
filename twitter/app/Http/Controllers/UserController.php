@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+// use Auth;
 
 class UserController extends Controller
 {
@@ -63,6 +64,12 @@ class UserController extends Controller
         // ユーザー一覧を取得して表示
         $users = $userModel->getAllUsers();
         return view('user.users', ['users' => $users]);
+    }
+
+    public function showMypage()
+    {
+        $user = Auth::user();
+        return view('user.show', ['user' => $user]);
     }
 
 }
