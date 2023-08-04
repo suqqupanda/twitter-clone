@@ -32,7 +32,7 @@
                             <li class="nav-item dropdown">
 
                                 <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
+                                        <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>                                   
                                     </li>
 
                                 <li class="nav-item">
