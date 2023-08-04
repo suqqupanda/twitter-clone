@@ -70,6 +70,11 @@ class User extends Authenticatable
     {
         return self::all();
     }
+
+    public function showMypage()
+    {
+        return Auth::user();
+    }
 }
 
 

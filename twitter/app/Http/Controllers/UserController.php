@@ -68,7 +68,10 @@ class UserController extends Controller
 
     public function showMypage()
     {
-        $user = Auth::user();
+        $userModel = new User();
+
+        // ユーザーの情報を取得して表示
+        $user = $userModel->showMypage();
         return view('user.show', ['user' => $user]);
     }
 
