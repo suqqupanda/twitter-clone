@@ -66,6 +66,11 @@ class User extends Authenticatable
         ]);
     }
 
+    /**
+     * ユーザー一覧を表示
+     * 
+     * @return Illuminate\Database\Eloquent\Collection 
+     */
     public function getAllUsers()
     {
         return self::all();
