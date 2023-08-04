@@ -71,6 +71,11 @@ class User extends Authenticatable
         return self::all();
     }
 
+    /**
+     * ユーザーのマイページを表示
+     * 
+     * @return \App\Models\User|null Userモデルのインスタンスもしくはnull
+     */
     public function showMypage()
     {
         return Auth::user();
