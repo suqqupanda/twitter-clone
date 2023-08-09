@@ -75,4 +75,23 @@ class UserController extends Controller
         return view('user.show', ['user' => $user]);
     }
 
+    public function editMypage()
+    {
+        return view('mypage.edit', ['user' => Auth::user()]);
+    }
+
+    public function updateMypage(Request $request)
+    {
+        $user = Auth::user();
+
+        $validatedData = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
+            // 他に編集可能なフィールドを追加
+        ]);
+
+        $user->update($validatedData);
+
+        return redirect()->route('mypage.edit')->with('success', 'Mypage updated successfully.');
+    }
 }

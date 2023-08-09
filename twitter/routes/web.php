@@ -35,3 +35,10 @@ Route::get('/users', [UserController::class, 'index'])->name('users');
 
 // マイページを表示
 Route::get('/mypage', [UserController::class, 'showMypage'])->name('mypage')->middleware('auth');
+
+// マイページの編集画面を表示
+Route::get('/mypage/edit', 'UserController@editProfile')->name('mypage.edit')->middleware('auth');
+
+// 変更された情報を更新
+Route::put('/mypage/update', 'UserController@updateProfile')->name('mypage.update')->middleware('auth');
+
