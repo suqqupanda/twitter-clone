@@ -72,7 +72,7 @@ class User extends Authenticatable
      * 
      * @return Illuminate\Database\Eloquent\Collection 
      */
-    public function getAllUsers(): \Illuminate\Database\Eloquent\Collection
+    public function getAllUsers(): Collection
     {
         return self::all();
     }
@@ -82,7 +82,7 @@ class User extends Authenticatable
      * 
      * @return \App\Models\User|null Userモデルのインスタンスもしくはnull
      */
-    public function getLoginUser(): \App\Models\User|null
+    public function getLoginUser(): User|null
     {
         return Auth::user(); 
     }
