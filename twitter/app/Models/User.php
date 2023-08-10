@@ -82,7 +82,7 @@ class User extends Authenticatable
      * 
      * @return \App\Models\User|null Userモデルのインスタンスもしくはnull
      */
-    public function showMypage(): \App\Models\User|null
+    public function getLoginUser(): \App\Models\User|null
     {
         return Auth::user(); 
     }

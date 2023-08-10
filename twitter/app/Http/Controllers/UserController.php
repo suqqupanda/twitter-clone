@@ -84,7 +84,7 @@ class UserController extends Controller
         $userModel = new User();
 
         // ユーザーの情報を取得して表示
-        $user = $userModel->showMypage();
+        $user = $userModel->getLoginUser();
         return view('user.show', ['user' => $user]);
     }
 
