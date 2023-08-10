@@ -84,8 +84,7 @@ class User extends Authenticatable
      */
     public function showMypage()
     {
-        $user = Auth::user();
-        return $user; 
+        return Auth::user(); 
     }
 }
 
