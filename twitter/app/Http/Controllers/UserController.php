@@ -22,7 +22,7 @@ class UserController extends Controller
      *
      * @return View
      */
-    public function create()
+    public function create(): View
     {
         return view('auth.signup');
     }
@@ -35,7 +35,7 @@ class UserController extends Controller
      *
      * @throws ValidationException
      */
-    public function store(PostRequest $request)
+    public function store(PostRequest $request): RedirectResponse
     {   
 
         // ユーザーモデルインスタンスの作成
@@ -57,7 +57,7 @@ class UserController extends Controller
         return redirect(route('home'));
     }
 
-    public function index()
+    public function index(): View
     {
         $userModel = new User();
 
@@ -66,7 +66,7 @@ class UserController extends Controller
         return view('user.users', ['users' => $users]);
     }
 
-    public function showMypage()
+    public function showMypage(): View
     {
         $userModel = new User();
 
