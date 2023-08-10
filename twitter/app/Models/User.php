@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -71,9 +72,19 @@ class User extends Authenticatable
      * 
      * @return Illuminate\Database\Eloquent\Collection 
      */
-    public function getAllUsers()
+    public function getAllUsers(): Collection
     {
         return self::all();
+    }
+
+    /**
+     * ユーザーのマイページを表示
+     * 
+     * @return \App\Models\User|null Userモデルのインスタンスもしくはnull
+     */
+    public function getLoginUser(): User|null
+    {
+        return Auth::user(); 
     }
 }
 
