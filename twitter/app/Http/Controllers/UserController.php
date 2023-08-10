@@ -13,29 +13,30 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Contracts\View\View;
 // use Auth;
 
 class UserController extends Controller
 {
     /**
-     * Display the registration view.
+     * 登録画面を表示
      *
      * @return View
      */
-    public function create()
+    public function create(): View
     {
         return view('auth.signup');
     }
 
     /**
-     * Handle an incoming registration request.
+     * ユーザーの新規登録
      *
      * @param  PostRequest  $request
      * @return RedirectResponse
      *
      * @throws ValidationException
      */
-    public function store(PostRequest $request)
+    public function store(PostRequest $request): RedirectResponse
     {   
 
         // ユーザーモデルインスタンスの作成
@@ -57,7 +58,13 @@ class UserController extends Controller
         return redirect(route('home'));
     }
 
-    public function index()
+    /**
+     * ユーザー一覧の表示
+     *
+     * @return View
+     *
+     */
+    public function index(): View
     {
         $userModel = new User();
 
@@ -66,12 +73,18 @@ class UserController extends Controller
         return view('user.users', ['users' => $users]);
     }
 
-    public function showMypage()
+    /**
+     * マイページの表示
+     *
+     * @return View
+     *
+     */
+    public function showMypage(): View
     {
         $userModel = new User();
 
         // ユーザーの情報を取得して表示
-        $user = $userModel->showMypage();
+        $user = $userModel->getLoginUser();
         return view('user.show', ['user' => $user]);
     }
 
