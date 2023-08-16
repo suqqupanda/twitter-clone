@@ -31,22 +31,48 @@
 
                         @else
                             <li class="nav-item dropdown">
-                                <li class="nav-item">
                                     @auth
-                                        @if (Route::currentRouteName() === 'mypage')
-                                            <a class="nav-link" href="{{ route('mypage.edit') }}">{{ __('Mypage Edit') }}</a>
+                                        <!-- home画面の時のヘッダー -->
+                                        @if (Route::currentRouteName() === 'home')
+                                            <li class="nav-item">    
+                                                <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
+                                            </li>
+                                            <li class="nav-item">    
+                                                <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
+                                            </li>
                                         @endif
+
+                                        <!-- ユーザー一覧の時のヘッダー -->
+                                        @if (Route::currentRouteName() === 'users')
+                                        <li class="nav-item">    
+                                            <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
+                                        </li>
+                                        @endif
+
+                                        <!-- マイページの時のヘッダー -->
+                                        @if (Route::currentRouteName() === 'mypage')
+                                        <li class="nav-item">    
+                                            <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
+                                        </li>
+
+                                        <li class="nav-item">    
+                                            <a class="nav-link" href="{{ route('mypage.edit') }}">{{ __('Edit') }}</a>
+                                        </li>
+                                        @endif
+
+                                        <!--マイページ編集時のヘッダー  -->
+                                        @if (Route::currentRouteName() === 'mypage.edit')
+                                            <li class="nav-item">    
+                                                <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
+                                            </li>
+                                            <li class="nav-item">    
+                                                <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
+                                            </li>
+                                        @endif
+
                                     @endauth
-                                </li>
 
-                                <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
-                                    </li>
-
-                                <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
-                                    </li>
-
+                                <!-- 共通で表示するヘッダー -->
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
