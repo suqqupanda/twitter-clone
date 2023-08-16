@@ -28,8 +28,16 @@
                                     <a class="nav-link" href="{{ route('signup') }}">{{ __('Signup') }}</a>
                                 </li>
                             @endif
+
                         @else
                             <li class="nav-item dropdown">
+                                <li class="nav-item">
+                                    @auth
+                                        @if (Route::currentRouteName() === 'mypage')
+                                            <a class="nav-link" href="{{ route('mypage.edit') }}">{{ __('Mypage Edit') }}</a>
+                                        @endif
+                                    @endauth
+                                </li>
 
                                 <li class="nav-item">
                                         <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
