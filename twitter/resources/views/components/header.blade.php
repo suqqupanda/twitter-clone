@@ -17,13 +17,15 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('login'))
+                            <!-- 新規登録画面でのヘッダー -->
+                            @if (Route::currentRouteName() === 'signup')
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
-                            @if (Route::has('signup'))
+                            <!-- ログイン画面でのヘッダー -->
+                            @if (Route::currentRouteName() === 'login')
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('signup') }}">{{ __('Signup') }}</a>
                                 </li>
@@ -32,7 +34,7 @@
                         @else
                             <li class="nav-item dropdown">
                                     @auth
-                                        <!-- home画面の時のヘッダー -->
+                                        <!-- home画面でのヘッダー -->
                                         @if (Route::currentRouteName() === 'home')
                                             <li class="nav-item">    
                                                 <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
@@ -42,14 +44,14 @@
                                             </li>
                                         @endif
 
-                                        <!-- ユーザー一覧の時のヘッダー -->
+                                        <!-- ユーザー一覧でのヘッダー -->
                                         @if (Route::currentRouteName() === 'users')
                                         <li class="nav-item">    
                                             <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
                                         </li>
                                         @endif
 
-                                        <!-- マイページの時のヘッダー -->
+                                        <!-- マイページでのヘッダー -->
                                         @if (Route::currentRouteName() === 'mypage')
                                         <li class="nav-item">    
                                             <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
@@ -60,7 +62,7 @@
                                         </li>
                                         @endif
 
-                                        <!--マイページ編集時のヘッダー  -->
+                                        <!--マイページ編集でのヘッダー  -->
                                         @if (Route::currentRouteName() === 'mypage.edit')
                                             <li class="nav-item">    
                                                 <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
