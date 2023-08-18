@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
-
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -93,13 +92,10 @@ class User extends Authenticatable
     /**
      * マイページの情報編集
      *
-     * @param string $name
-     * @param string $email
+     * @param Request $request
+     * @return void
      */
-
-    public function updateUser(
-        Request $request
-    )
+    public function updateUser(Request $request): void
     {
         $user = Auth::user();
 

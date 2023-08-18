@@ -4,7 +4,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PostRequest;
+use App\Http\Requests\SignupRequest;
+use App\Http\Requests\EditUserRequest;
 use App\Http\Requests\SampleFormRequest;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -32,12 +33,12 @@ class UserController extends Controller
     /**
      * ユーザーの新規登録
      *
-     * @param  PostRequest  $request
+     * @param  SignupRequest  $request
      * @return RedirectResponse
      *
      * @throws ValidationException
      */
-    public function store(PostRequest $request): RedirectResponse
+    public function store(SignupRequest $request): RedirectResponse
     {   
 
         // ユーザーモデルインスタンスの作成
@@ -103,12 +104,12 @@ class UserController extends Controller
     /**
      * マイページの登録情報を編集
      *
-     * @param  PostRequest  $request
+     * @param  EditUserRequest  $request
      * @return RedirectResponse
      *
      * @throws ValidationException
      */
-    public function updateMypage(Request $request): RedirectResponse
+    public function updateMypage(EditUserRequest $request): RedirectResponse
     {
         $userModel = new User();
         $userModel->updateUser($request);
