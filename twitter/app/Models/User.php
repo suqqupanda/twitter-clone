@@ -106,6 +106,6 @@ class User extends Authenticatable
         $user->name = $request->name;
         $user->email = $request->email;
 
-        $user->save();
+        $user->update();
     }
 }

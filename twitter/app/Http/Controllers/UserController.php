@@ -8,6 +8,7 @@ use App\Http\Requests\PostRequest;
 use App\Http\Requests\SampleFormRequest;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -107,7 +108,7 @@ class UserController extends Controller
      *
      * @throws ValidationException
      */
-    public function updateMypage(PostRequest $request): RedirectResponse
+    public function updateMypage(Request $request): RedirectResponse
     {
         $userModel = new User();
         $userModel->updateUser($request);
