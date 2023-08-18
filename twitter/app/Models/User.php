@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
+
 
 class User extends Authenticatable
 {
@@ -87,6 +89,23 @@ class User extends Authenticatable
     {
         return Auth::user(); 
     }
+
+    /**
+     * マイページの情報編集
+     *
+     * @param string $name
+     * @param string $email
+     */
+
+    public function updateUser(
+        Request $request
+    )
+    {
+        $user = Auth::user();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        $user->save();
+    }
 }
-
-

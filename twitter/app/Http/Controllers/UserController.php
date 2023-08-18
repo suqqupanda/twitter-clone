@@ -99,18 +99,18 @@ class UserController extends Controller
         return view('user.edit', ['user' => Auth::user()]);
     }
 
-
-    public function updateMypage(Request $request)
+    /**
+     * マイページの登録情報を編集
+     *
+     * @param  PostRequest  $request
+     * @return RedirectResponse
+     *
+     * @throws ValidationException
+     */
+    public function updateMypage(PostRequest $request): RedirectResponse
     {
-        $user = Auth::user();
-
-        $validatedData = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
-
-        ]);
-
-        $user->update($validatedData);
+        $userModel = new User();
+        $userModel->updateUser($request);
 
         return redirect(route('mypage.edit'))->with('success', 'Mypage updated successfully.');
     }
