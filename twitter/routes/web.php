@@ -33,12 +33,18 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 // ユーザー一覧を表示
 Route::get('/users', [UserController::class, 'index'])->name('users');
 
-// マイページを表示
-Route::get('/mypage', [UserController::class, 'showMypage'])->name('mypage')->middleware('auth');
+// 認証済みRoute
+Route::group(['middleware' => 'auth'], function () {
+    // Mypageグループ
+    Route::group(['prefix' => 'mypage', 'as' => 'mypage'], function() {
+        // マイページを表示
+        Route::get('/', [UserController::class, 'showMypage'])->name('');
+        // マイページの編集画面を表示
+        Route::get('/edit', [UserController::class, 'editMypage'])->name('.edit');
+        // 変更された情報を更新
+        Route::put('/update', [UserController::class, 'updateMypage'])->name('.update');
+        // ユーザーを削除
+        Route::delete('/delete', [UserController::class, 'deleteMypage'])->name('.delete');
+    });
 
-// マイページの編集画面を表示
-Route::get('/mypage/edit', [UserController::class, 'editMypage'])->name('mypage.edit')->middleware('auth');
-
-// 変更された情報を更新
-Route::put('/mypage/update', [UserController::class, 'updateMypage'])->name('mypage.update')->middleware('auth');
-
+});

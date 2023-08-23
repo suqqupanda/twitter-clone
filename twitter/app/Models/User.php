@@ -2,20 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -46,6 +47,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * 日付をcarbon形式に変換
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 
     /**
      * 新規登録
@@ -103,5 +111,18 @@ class User extends Authenticatable
         $user->email = $request->email;
 
         $user->update();
+    }
+
+    /**
+     * マイページの情報削除
+     *
+     * @param integer $userId
+     * @return void
+     */
+    public function deleteUser(int $userId): void
+    {
+        // ユーザーテーブルから指定したIDの情報を取得
+        $user = User::find($userId);
+        $user->delete();
     }
 }

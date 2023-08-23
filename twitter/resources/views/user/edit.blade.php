@@ -22,5 +22,11 @@
             
             <button type="submit" class="btn btn-primary">Update Mypage</button>
         </form>
+        
+        <form action="{{ route('mypage.delete') }}" method="post">
+            @csrf
+            @method('delete')
+            <button type="submit" class="btn btn-primary">Delete Mypage</button>
+        </form>
     </div>
 @endsection

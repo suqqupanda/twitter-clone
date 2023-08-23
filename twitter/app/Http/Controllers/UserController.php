@@ -116,4 +116,19 @@ class UserController extends Controller
 
         return redirect(route('mypage.edit'))->with('success', 'Mypage updated successfully.');
     }
+
+    /**
+     * マイページの登録情報を削除
+     *
+     * @return void
+     */
+    public function deleteMypage()
+    {
+        $userId = Auth::id();
+
+        $user = new User();
+        $user->deleteUser($userId);
+
+        return redirect(route('home'))->with('success', 'Mypage deleted successfully.');
+    }
 }
