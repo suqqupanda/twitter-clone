@@ -4,19 +4,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SignupRequest;
 use App\Http\Requests\EditUserRequest;
 use App\Http\Requests\SampleFormRequest;
-use App\Models\User;
+use App\Http\Requests\SignupRequest;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Validation\Rules;
 use Illuminate\Contracts\View\View;
-// use Auth;
 
 class UserController extends Controller
 {
@@ -109,10 +107,9 @@ class UserController extends Controller
      *
      * @throws ValidationException
      */
-    public function updateMypage(EditUserRequest $request): RedirectResponse
+    public function updateMypage(EditUserRequest $request, User $user): RedirectResponse
     {
-        $userModel = new User();
-        $userModel->updateUser($request);
+        $user->updateUser($request);
 
         return redirect(route('mypage.edit'))->with('success', 'Mypage updated successfully.');
     }
