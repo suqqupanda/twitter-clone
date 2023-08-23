@@ -1,58 +1,60 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <div class="container">
+        <a class="navbar-brand" href="{{ url('/') }}">
+            {{ config('app.name', 'Laravel') }}
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Left Side Of Navbar -->
+            <ul class="navbar-nav me-auto">
 
-                    </ul>
+            </ul>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <!-- 新規登録画面でのヘッダー -->
-                            @if (Route::currentRouteName() === 'signup')
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+            <!-- Right Side Of Navbar -->
+            <ul class="navbar-nav ms-auto">
+                <!-- Authentication Links -->
+                @guest
+                    <!-- 新規登録画面でのヘッダー -->
+                    @if (Route::currentRouteName() === 'signup')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
 
-                            <!-- ログイン画面でのヘッダー -->
-                            @if (Route::currentRouteName() === 'login')
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('signup') }}">{{ __('Signup') }}</a>
-                                </li>
-                            @endif
+                    <!-- ログイン画面でのヘッダー -->
+                    @elseif (Route::currentRouteName() === 'login')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('signup') }}">{{ __('Signup') }}</a>
+                        </li>
+                    @endif
 
-                        @else
-                            <li class="nav-item dropdown">
-                                    @auth
-                                        <!-- home画面でのヘッダー -->
-                                        @if (Route::currentRouteName() === 'home')
-                                            <li class="nav-item">    
-                                                <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
-                                            </li>
-                                            <li class="nav-item">    
-                                                <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
-                                            </li>
-                                        @endif
-
-                                        <!-- ユーザー一覧でのヘッダー -->
-                                        @if (Route::currentRouteName() === 'users')
+                @else
+                    <li class="nav-item dropdown">
+                            @auth
+                                @switch(Route::currentRouteName())
+                                    @case('home')
+                                    @case('mypage.edit')
+                                    <!-- home画面でのヘッダー -->
+                                    <!-- マイページ編集画面でのヘッダー -->
+                                    <li class="nav-item">    
+                                            <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
+                                        </li>
                                         <li class="nav-item">    
                                             <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
                                         </li>
-                                        @endif
+                                        @break
 
-                                        <!-- マイページでのヘッダー -->
-                                        @if (Route::currentRouteName() === 'mypage')
+                                    @case('users')
+                                    <!-- ユーザー一覧でのヘッダー -->
+                                    <li class="nav-item">    
+                                            <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
+                                        </li>
+                                        @break
+
+                                    @case('mypage')
+                                    
                                         <li class="nav-item">    
                                             <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
                                         </li>
@@ -60,40 +62,29 @@
                                         <li class="nav-item">    
                                             <a class="nav-link" href="{{ route('mypage.edit') }}">{{ __('Edit') }}</a>
                                         </li>
-                                        @endif
+                                        @break
+                                @endswitch
+                            @endauth
 
-                                        <!--マイページ編集でのヘッダー  -->
-                                        @if (Route::currentRouteName() === 'mypage.edit')
-                                            <li class="nav-item">    
-                                                <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
-                                            </li>
-                                            <li class="nav-item">    
-                                                <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
-                                            </li>
-                                        @endif
+                        <!-- 共通で表示するヘッダー -->
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }}
+                        </a>
 
-                                    @endauth
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
 
-                                <!-- 共通で表示するヘッダー -->
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @endguest
+            </ul>
+        </div>
+    </div>
+</nav>
