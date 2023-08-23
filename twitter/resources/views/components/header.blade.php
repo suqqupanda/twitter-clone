@@ -17,28 +17,64 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('login'))
+                            <!-- 新規登録画面でのヘッダー -->
+                            @if (Route::currentRouteName() === 'signup')
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
-                            @if (Route::has('signup'))
+                            <!-- ログイン画面でのヘッダー -->
+                            @if (Route::currentRouteName() === 'login')
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('signup') }}">{{ __('Signup') }}</a>
                                 </li>
                             @endif
+
                         @else
                             <li class="nav-item dropdown">
+                                    @auth
+                                        <!-- home画面でのヘッダー -->
+                                        @if (Route::currentRouteName() === 'home')
+                                            <li class="nav-item">    
+                                                <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
+                                            </li>
+                                            <li class="nav-item">    
+                                                <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
+                                            </li>
+                                        @endif
 
-                                <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
-                                    </li>
+                                        <!-- ユーザー一覧でのヘッダー -->
+                                        @if (Route::currentRouteName() === 'users')
+                                        <li class="nav-item">    
+                                            <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
+                                        </li>
+                                        @endif
 
-                                <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
-                                    </li>
+                                        <!-- マイページでのヘッダー -->
+                                        @if (Route::currentRouteName() === 'mypage')
+                                        <li class="nav-item">    
+                                            <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
+                                        </li>
 
+                                        <li class="nav-item">    
+                                            <a class="nav-link" href="{{ route('mypage.edit') }}">{{ __('Edit') }}</a>
+                                        </li>
+                                        @endif
+
+                                        <!--マイページ編集でのヘッダー  -->
+                                        @if (Route::currentRouteName() === 'mypage.edit')
+                                            <li class="nav-item">    
+                                                <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
+                                            </li>
+                                            <li class="nav-item">    
+                                                <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
+                                            </li>
+                                        @endif
+
+                                    @endauth
+
+                                <!-- 共通で表示するヘッダー -->
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>

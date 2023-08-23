@@ -4,10 +4,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PostRequest;
+use App\Http\Requests\SignupRequest;
+use App\Http\Requests\EditUserRequest;
 use App\Http\Requests\SampleFormRequest;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,12 +33,12 @@ class UserController extends Controller
     /**
      * ユーザーの新規登録
      *
-     * @param  PostRequest  $request
+     * @param  SignupRequest  $request
      * @return RedirectResponse
      *
      * @throws ValidationException
      */
-    public function store(PostRequest $request): RedirectResponse
+    public function store(SignupRequest $request): RedirectResponse
     {   
 
         // ユーザーモデルインスタンスの作成
@@ -88,4 +90,30 @@ class UserController extends Controller
         return view('user.show', ['user' => $user]);
     }
 
+    /**
+     * マイページ編集画面を表示
+     *
+     * @return View
+     *
+     */
+    public function editMypage(): View
+    {
+        return view('user.edit', ['user' => Auth::user()]);
+    }
+
+    /**
+     * マイページの登録情報を編集
+     *
+     * @param  EditUserRequest  $request
+     * @return RedirectResponse
+     *
+     * @throws ValidationException
+     */
+    public function updateMypage(EditUserRequest $request): RedirectResponse
+    {
+        $userModel = new User();
+        $userModel->updateUser($request);
+
+        return redirect(route('mypage.edit'))->with('success', 'Mypage updated successfully.');
+    }
 }

@@ -10,6 +10,8 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 
 class User extends Authenticatable
 {
@@ -86,6 +88,20 @@ class User extends Authenticatable
     {
         return Auth::user(); 
     }
+
+    /**
+     * マイページの情報編集
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function updateUser(Request $request): void
+    {
+        $user = Auth::user();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        $user->update();
+    }
 }
-
-
