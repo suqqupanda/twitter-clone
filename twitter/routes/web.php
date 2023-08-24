@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TweetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +21,7 @@ Route::get('/', function () {
 });
 
 // 新規登録ページを表示
-Route::get('signup', [UserController::class, 'create'])
-                ->name('signup');
+Route::get('signup', [UserController::class, 'create'])->name('signup');
 
 // 新規ユーザーを登録
 Route::post('signup', [UserController::class, 'store']);
@@ -47,4 +47,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/delete', [UserController::class, 'deleteMypage'])->name('.delete');
     });
 
+    Route::group(['prefix' => 'tweet', 'as' => 'tweet'], function() {
+        // ツイート作成画面を表示
+        Route::get('/', [TweetController::class, 'create'])->name('');
+        // ツイートを作成
+        Route::post('/', [TweetController::class, 'store'])->name('.post');
+    });
 });
