@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EditUserRequest;
-use App\Http\Requests\SampleFormRequest;
 use App\Http\Requests\SignupRequest;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
@@ -13,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Validation\Rules;
 use Illuminate\Contracts\View\View;
 
 class UserController extends Controller
