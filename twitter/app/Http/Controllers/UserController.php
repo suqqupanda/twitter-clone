@@ -117,14 +117,12 @@ class UserController extends Controller
     /**
      * マイページの登録情報を削除
      *
-     * @return void
+     * @return RedirectResponse
      */
-    public function deleteMypage()
+    public function deleteMypage(): RedirectResponse
     {
-        $userId = Auth::id();
-
         $user = new User();
-        $user->deleteUser($userId);
+        $user->deleteUser(Auth::id());
 
         return redirect(route('home'))->with('success', 'Mypage deleted successfully.');
     }
