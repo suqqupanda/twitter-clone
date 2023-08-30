@@ -17,7 +17,7 @@
                         <div>
                             <strong>{{ $tweet->user->name }}</strong> tweeted:
                             <!-- <strong>{{ $tweet->user_id }}</strong> tweeted: -->
-                            {{ $tweet->tweet }}
+                            {{ Str::limit( $tweet->tweet , 10, '...') }}
                         </div>
                         <div>
                             {{ $tweet->created_at->diffForHumans() }}
