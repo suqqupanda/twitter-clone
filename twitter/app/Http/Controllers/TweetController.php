@@ -38,8 +38,7 @@ class TweetController extends Controller
         // 新規ツイートの登録
         $tweetModel->store($request->tweet);
 
-        // TODO：ツイート一覧にリダイレクトするようにする
-        return redirect(route('home'));
+        return redirect(route('tweet.list'));
     }
 
     /**
