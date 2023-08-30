@@ -52,5 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', [TweetController::class, 'create'])->name('');
         // ツイートを作成
         Route::post('/', [TweetController::class, 'store'])->name('.post');
+        // ツイート一覧を表示
+        Route::get('/list', [TweetController::class, 'index'])->name('.list');
     });
 });
