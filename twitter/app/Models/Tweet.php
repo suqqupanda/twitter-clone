@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class Tweet extends Model
 {
@@ -44,17 +46,15 @@ class Tweet extends Model
     public function getAllTweets()
     {
         return $this->orderBy("created_at", "desc")->paginate(10);
-        
     }
 
     /**
      * usersテーブルとtweetsテーブルのリレーションを貼る
      *
-     * @return void
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function user():BelongsTo
     {
-        // return $this->hasMany(Tweet::class);
         return $this->belongsTo(User::class);
     }
 }

@@ -5,12 +5,6 @@
         <h1>Tweet List</h1>
         
         <ul class="list-group">
-            <!-- 画面で、各ツイートの情報を出力する
-            → ツイートしたユーザー名 & ツイート内容 & ツイート日時
-
-            tweetsテーブルとusersテーブルを繋げる（リレーションを張る）
-            tweetsテーブルのuser_idとusersテーブルのidが繋げられる -->
-
             @forelse($tweets as $tweet)
                 <li class="list-group-item">
                     <div class="d-flex justify-content-between">
@@ -20,7 +14,7 @@
                             {{ Str::limit( $tweet->tweet , 10, '...') }}
                         </div>
                         <div>
-                            {{ $tweet->created_at->diffForHumans() }}
+                            {{ $tweet->created_at->format('Y年m月d日') }}
                         </div>
                     </div>
                 </li>

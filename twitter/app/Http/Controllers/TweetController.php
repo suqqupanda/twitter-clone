@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\Tweet;
-// use App\Models\User;
 use App\Http\Requests\TweetRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
@@ -50,16 +49,11 @@ class TweetController extends Controller
     public function index(): View
     {
         $tweetModel = new Tweet();
-        // $userModel = new User();
 
         // ツイート一覧を取得して表示
         $tweets = $tweetModel->getAllTweets();
-
-        // $users = $userModel->getAllUsers();
         
         return view('tweet.list', ['tweets' => $tweets]);
-
-        // return view('tweet.list', ['tweets' => $tweets, 'users' => $users]);
     }
 
 }
