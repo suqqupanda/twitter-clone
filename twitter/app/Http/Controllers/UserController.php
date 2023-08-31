@@ -90,7 +90,6 @@ class UserController extends Controller
      * マイページ編集画面を表示
      *
      * @return View
-     *
      */
     public function editMypage(): View
     {

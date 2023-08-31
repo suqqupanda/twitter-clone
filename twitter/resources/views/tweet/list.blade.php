@@ -10,8 +10,7 @@
                     <div class="d-flex justify-content-between">
                         <div>
                             <strong>{{ $tweet->user->name }}</strong> tweeted:
-                            <!-- <strong>{{ $tweet->user_id }}</strong> tweeted: -->
-                            {{ Str::limit( $tweet->tweet , 10, '...') }}
+                            {{ $tweet->tweet }}
                         </div>
                         <div>
                             {{ $tweet->created_at->format('Y年m月d日') }}

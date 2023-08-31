@@ -44,7 +44,6 @@ class TweetController extends Controller
      * ツイート一覧の表示
      *
      * @return View
-     *
      */
     public function index(): View
     {
