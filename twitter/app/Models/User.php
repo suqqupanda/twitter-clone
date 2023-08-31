@@ -82,9 +82,9 @@ class User extends Authenticatable
      * 
      * @return Illuminate\Database\Eloquent\Collection 
      */
-    public function getAllUsers(): Collection
+    public function getAllUsers()
     {
-        return self::all();
+        return $this->orderBy("created_at", "desc")->paginate(config('constant.ITEM_PER_PAGE'));
     }
 
     /**

@@ -37,8 +37,22 @@ class TweetController extends Controller
         // 新規ツイートの登録
         $tweetModel->store($request->tweet);
 
-        // TODO：ツイート一覧にリダイレクトするようにする
-        return redirect(route('home'));
+        return redirect(route('tweet.list'));
+    }
+
+    /**
+     * ツイート一覧の表示
+     *
+     * @return View
+     */
+    public function index(): View
+    {
+        $tweetModel = new Tweet();
+
+        // ツイート一覧を取得して表示
+        $tweets = $tweetModel->getAllTweets();
+        
+        return view('tweet.list', ['tweets' => $tweets]);
     }
 
 }

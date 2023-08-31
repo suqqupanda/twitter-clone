@@ -16,9 +16,7 @@ use App\Http\Controllers\TweetController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () {return view('welcome');})->name('/');
 
 // 新規登録ページを表示
 Route::get('signup', [UserController::class, 'create'])->name('signup');
@@ -52,5 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', [TweetController::class, 'create'])->name('');
         // ツイートを作成
         Route::post('/', [TweetController::class, 'store'])->name('.post');
+        // ツイート一覧を表示
+        Route::get('/list', [TweetController::class, 'index'])->name('.list');
     });
 });

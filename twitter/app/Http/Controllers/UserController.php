@@ -90,7 +90,6 @@ class UserController extends Controller
      * マイページ編集画面を表示
      *
      * @return View
-     *
      */
     public function editMypage(): View
     {
@@ -122,6 +121,6 @@ class UserController extends Controller
         $user = new User();
         $user->deleteUser(Auth::id());
 
-        return redirect(route('home'))->with('success', 'Mypage deleted successfully.');
+        return redirect()->route('/');
     }
 }
