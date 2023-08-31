@@ -16,5 +16,4 @@
     {{ $users->links() }}
 </body>
 </html>
-
 @endsection
