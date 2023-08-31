@@ -16,9 +16,7 @@ use App\Http\Controllers\TweetController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () {return view('welcome');})->name('/');
 
 // 新規登録ページを表示
 Route::get('signup', [UserController::class, 'create'])->name('signup');

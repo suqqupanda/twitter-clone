@@ -84,8 +84,7 @@ class User extends Authenticatable
      */
     public function getAllUsers()
     {
-        return $this->orderBy("created_at", "desc")->paginate(config('constant.item/page'));
-        // return self::all();
+        return $this->orderBy("created_at", "desc")->paginate(config('constant.ITEM_PER_PAGE'));
     }
 
     /**

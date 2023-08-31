@@ -1,4 +1,4 @@
 <?php
 return [
-    'item/page' => '10'
+    'ITEM_PER_PAGE' => 10
 ];
