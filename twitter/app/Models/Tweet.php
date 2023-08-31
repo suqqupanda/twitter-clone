@@ -44,7 +44,7 @@ class Tweet extends Model
      */
     public function getAllTweets()
     {
-        return $this->orderBy("created_at", "desc")->paginate(10);
+        return $this->orderBy("created_at", "desc")->paginate(config('constant.item/page'));
     }
 
     /**

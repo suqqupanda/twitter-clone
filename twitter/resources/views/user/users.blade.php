@@ -13,6 +13,8 @@
             <li>{{ $user->name }}</li>
         @endforeach
     </ul>
+    {{ $users->links() }}
 </body>
 </html>
+
 @endsection
