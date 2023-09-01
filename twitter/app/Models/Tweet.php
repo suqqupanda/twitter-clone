@@ -66,8 +66,6 @@ class Tweet extends Model
     public function getTweetById($tweetId): Tweet|null
     {
         // ツイートテーブルから指定したIDの情報を取得
-        $tweet = Tweet::find($tweetId);
-        
-        return $tweet;
+        return Tweet::find($tweetId);
     }
 }

@@ -58,6 +58,7 @@ class TweetController extends Controller
     /**
      * ツイートの詳細を表示
      *
+     * @param integer $tweetId
      * @return View
      */
     public function show(int $tweetId): View
