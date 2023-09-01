@@ -57,5 +57,11 @@ class Tweet extends Model
         return $this->belongsTo(User::class);
     }
 
-    
+    public function getUserTweet($tweetId)
+    {
+        // ツイートテーブルから指定したIDの情報を取得
+        $tweet = Tweet::find($tweetId);
+        
+        return $tweet;
+    }
 }
