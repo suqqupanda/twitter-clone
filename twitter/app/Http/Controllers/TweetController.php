@@ -64,7 +64,7 @@ class TweetController extends Controller
     {
         $tweetModel = new Tweet();
 
-        $tweet = $tweetModel->getUserTweet($tweetId);
+        $tweet = $tweetModel->getTweetById($tweetId);
 
         return view('tweet.show', ['tweet' => $tweet]);
     }
