@@ -6,22 +6,23 @@
         
         <ul class="list-group">
             @forelse($tweets as $tweet)
-                <li class="list-group-item">
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <strong>{{ $tweet->user->name }}</strong> tweeted:
-                            {{ $tweet->tweet }}
+                <a class="text-decoration-none tweet-card-link" href="{{ route('tweet.show', ['id' => $tweet->id]) }}">
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <strong>{{ $tweet->user->name }}</strong> tweeted:
+                                {{ $tweet->tweet }}
+                            </div>
+                            <div>
+                                {{ $tweet->created_at->format('Y年m月d日') }}
+                            </div>
                         </div>
-                        <div>
-                            {{ $tweet->created_at->format('Y年m月d日') }}
-                        </div>
-                    </div>
-                </li>
+                    </li>
+                </a>
             @empty
                 <li class="list-group-item">No tweets available.</li>
             @endforelse
         </ul>
-
         {{ $tweets->links() }}
     </div>
 @endsection

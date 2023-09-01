@@ -55,4 +55,18 @@ class TweetController extends Controller
         return view('tweet.list', ['tweets' => $tweets]);
     }
 
+    /**
+     * ツイートの詳細を表示
+     *
+     * @param integer $tweetId
+     * @return View
+     */
+    public function show(int $tweetId): View
+    {
+        $tweetModel = new Tweet();
+
+        $tweet = $tweetModel->getTweetById($tweetId);
+
+        return view('tweet.show', ['tweet' => $tweet]);
+    }
 }
