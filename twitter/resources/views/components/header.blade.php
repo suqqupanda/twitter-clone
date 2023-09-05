@@ -39,10 +39,10 @@
                                     <!-- home画面でのヘッダー -->
                                     <!-- マイページ編集画面でのヘッダー -->
                                         <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
+                                            <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
                                         </li>
                                         <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
+                                            <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
                                         </li>
                                         <li class="nav-item">    
                                             <a class="nav-link" href="{{ route('tweet') }}">{{ __('Tweet') }}</a>
@@ -68,10 +68,10 @@
                                     @case('mypage')
                                     <!-- マイページでのヘッダー -->
                                         <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
+                                            <a class="nav-link" href="{{ route('mypage.edit') }}">{{ __('Edit') }}</a>
                                         </li>
                                         <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('mypage.edit') }}">{{ __('Edit') }}</a>
+                                            <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
                                         </li>
                                         <li class="nav-item">    
                                             <a class="nav-link" href="{{ route('tweet') }}">{{ __('Tweet') }}</a>
@@ -92,7 +92,6 @@
                                         <li class="nav-item">    
                                             <a class="nav-link" href="{{ route('tweet.list') }}">{{ __('Tweetlist') }}</a>
                                         </li>
-
                                         @break
 
                                     @case('tweet.list')
@@ -106,7 +105,39 @@
                                         <li class="nav-item">    
                                             <a class="nav-link" href="{{ route('tweet') }}">{{ __('Tweet') }}</a>
                                         </li>
+                                        @break
 
+                                    @case('tweet.show')
+                                    <!-- ツイート詳細画面でのヘッダー -->
+                                    <!-- ツイート編集のボタンを追加する -->
+                                        <li class="nav-item">    
+                                            <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a class="nav-link" href="{{ route('tweet') }}">{{ __('Tweet') }}</a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a class="nav-link" href="{{ route('tweet.list') }}">{{ __('Tweetlist') }}</a>
+                                        </li>
+                                        @break
+
+                                    @case('tweet.edit')
+                                    <!-- ツイート編集画面でのヘッダー -->
+                                        <li class="nav-item">    
+                                            <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a class="nav-link" href="{{ route('tweet') }}">{{ __('Tweet') }}</a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a class="nav-link" href="{{ route('tweet.list') }}">{{ __('Tweetlist') }}</a>
+                                        </li>
                                         @break
                                 @endswitch
                             @endauth

@@ -61,12 +61,32 @@ class TweetController extends Controller
      * @param integer $tweetId
      * @return View
      */
-    public function show(int $tweetId): View
+    public function showTweet(int $tweetId): View
     {
         $tweetModel = new Tweet();
 
         $tweet = $tweetModel->getTweetById($tweetId);
 
         return view('tweet.show', ['tweet' => $tweet]);
+    }
+
+    // ツイート編集ページを表示
+    public function editTweet(int $tweetId)
+    {
+        $tweetModel = new Tweet();
+
+        $tweet = $tweetModel->getTweetById($tweetId);
+
+        return view('tweet.edit', ['tweet' => $tweet]);
+    }
+
+    // ツイートを更新
+    public function updateTweet(TweetRequest $request, int $tweetId)
+    {
+        $tweetModel = new Tweet();
+
+        $tweet = $tweetModel->updateTweet($request, $tweetId);
+
+        return redirect(route('tweet.list'))->with('success', 'Tweet updated successfully.');
     }
 }
