@@ -71,7 +71,14 @@ class Tweet extends Model
         return Tweet::find($tweetId);
     }
 
-    public function updateTweet(TweetRequest $request, int $tweetId)
+    /**
+     * ツイートを更新
+     *
+     * @param TweetRequest $request
+     * @param integer $tweetId
+     * @return Tweet
+     */
+    public function updateTweet(TweetRequest $request, int $tweetId): Tweet
     {
         // ツイートテーブルから指定したIDの情報を取得
         $tweet = Tweet::find($tweetId);

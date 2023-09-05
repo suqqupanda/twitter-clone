@@ -70,8 +70,13 @@ class TweetController extends Controller
         return view('tweet.show', ['tweet' => $tweet]);
     }
 
-    // ツイート編集ページを表示
-    public function editTweet(int $tweetId)
+    /**
+     * ツイート編集画面を表示
+     *
+     * @param integer $tweetId
+     * @return View
+     */
+    public function editTweet(int $tweetId): View
     {
         $tweetModel = new Tweet();
 
@@ -80,8 +85,14 @@ class TweetController extends Controller
         return view('tweet.edit', ['tweet' => $tweet]);
     }
 
-    // ツイートを更新
-    public function updateTweet(TweetRequest $request, int $tweetId)
+    /**
+     * 編集されたツイートを更新
+     *
+     * @param TweetRequest $request
+     * @param integer $tweetId
+     * @return RedirectResponse
+     */
+    public function updateTweet(TweetRequest $request, int $tweetId): RedirectResponse
     {
         $tweetModel = new Tweet();
         
