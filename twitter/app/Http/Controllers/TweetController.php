@@ -94,15 +94,18 @@ class TweetController extends Controller
      */
     public function updateTweet(TweetRequest $request, int $tweetId): RedirectResponse
     {
+        // リクエストから必要なデータを抽出
+        $tweetText = $request->input('tweet');
+        
         $tweetModel = new Tweet();
         
         // ツイートのユーザーIDとログインユーザーのIDを比較
-        if (Auth::id() !== Tweet::find($tweetId)->user_id) 
+        if (Auth::id() !== $tweetModel->getTweetById($tweetId)->user_id) 
         {
             return redirect(route('tweet.list'))->with('error', 'You do not have permission to update this tweet.');
         }
 
-        $tweet = $tweetModel->updateTweet($request, $tweetId);
+        $tweet = $tweetModel->updateTweet($tweetText, $tweetId);
         
         return redirect(route('tweet.list'))->with('success', 'Tweet updated successfully.');
     }

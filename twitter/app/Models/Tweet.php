@@ -78,12 +78,15 @@ class Tweet extends Model
      * @param integer $tweetId
      * @return Tweet
      */
-    public function updateTweet(TweetRequest $request, int $tweetId): Tweet
+    public function updateTweet(string $tweetText, int $tweetId): Tweet
     {
-        // ツイートテーブルから指定したIDの情報を取得
-        $tweet = Tweet::find($tweetId);
+        // クラスのインスタンスを作成
+        $instance = new Tweet();
 
-        $tweet->tweet = $request->tweet;
+        // メソッドを呼び出して結果を取得
+        $tweet = $instance->getTweetById($tweetId);
+
+        $tweet->tweet = $tweetText;
 
         $tweet->update();
 
