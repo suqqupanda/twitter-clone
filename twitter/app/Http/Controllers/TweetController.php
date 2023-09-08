@@ -110,7 +110,13 @@ class TweetController extends Controller
         return redirect(route('tweet.list'))->with('success', 'Tweet updated successfully.');
     }
 
-    public function deleteTweet(int $tweetId)
+    /**
+     * ツイートを削除
+     *
+     * @param integer $tweetId
+     * @return RedirectResponse
+     */
+    public function deleteTweet(int $tweetId): RedirectResponse
     {
         $tweet = new Tweet();
 
