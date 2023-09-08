@@ -74,22 +74,17 @@ class Tweet extends Model
     /**
      * ツイートを更新
      *
-     * @param TweetRequest $request
+     * @param string $tweetText
      * @param integer $tweetId
-     * @return Tweet
+     * @return void
      */
-    public function updateTweet(string $tweetText, int $tweetId): Tweet
+    public function updateTweet(string $tweetText, int $tweetId): void
     {
-        // クラスのインスタンスを作成
-        $instance = new Tweet();
-
         // メソッドを呼び出して結果を取得
-        $tweet = $instance->getTweetById($tweetId);
+        $tweet = $this->getTweetById($tweetId);
 
         $tweet->tweet = $tweetText;
 
         $tweet->update();
-
-        return $tweet;
     }
 }

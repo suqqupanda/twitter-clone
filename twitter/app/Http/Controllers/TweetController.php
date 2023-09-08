@@ -105,7 +105,7 @@ class TweetController extends Controller
             return redirect(route('tweet.list'))->with('error', 'You do not have permission to update this tweet.');
         }
 
-        $tweet = $tweetModel->updateTweet($tweetText, $tweetId);
+        $tweetModel->updateTweet($tweetText, $tweetId);
         
         return redirect(route('tweet.list'))->with('success', 'Tweet updated successfully.');
     }
