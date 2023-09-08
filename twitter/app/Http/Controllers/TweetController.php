@@ -113,6 +113,12 @@ class TweetController extends Controller
     public function deleteTweet(int $tweetId)
     {
         $tweet = new Tweet();
+
+        // ツイートのユーザーIDとログインユーザーのIDを比較
+        if (Auth::id() !== $tweet->getTweetById($tweetId)->user_id) 
+        {
+            return redirect(route('tweet.list'))->with('error');
+        }
         
         $tweet->deleteTweet($tweetId);
 
