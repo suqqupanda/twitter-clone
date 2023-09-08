@@ -125,7 +125,9 @@
                                         @break
 
                                     @case('tweet.edit')
+                                    @case('tweet.delete')
                                     <!-- ツイート編集画面でのヘッダー -->
+                                    <!-- ツイート削除画面でのヘッダー -->
                                         <li class="nav-item">    
                                             <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
                                         </li>

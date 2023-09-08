@@ -123,6 +123,7 @@ class User extends Authenticatable
     {
         // ユーザーテーブルから指定したIDの情報を取得
         $user = User::find($userId);
+        
         $user->delete();
     }
 }

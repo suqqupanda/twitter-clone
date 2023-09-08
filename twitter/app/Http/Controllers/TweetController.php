@@ -109,4 +109,13 @@ class TweetController extends Controller
         
         return redirect(route('tweet.list'))->with('success', 'Tweet updated successfully.');
     }
+
+    public function deleteTweet(int $tweetId)
+    {
+        $tweet = new Tweet();
+        
+        $tweet->deleteTweet($tweetId);
+
+        return redirect(route('tweet.list'));
+    }
 }

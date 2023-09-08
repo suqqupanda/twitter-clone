@@ -87,4 +87,12 @@ class Tweet extends Model
 
         $tweet->update();
     }
+
+    public function deleteTweet(int $tweetId)
+    {
+        // 指定したIDのツイートを取得
+        $tweet = $this->getTweetById($tweetId);
+
+        $tweet->delete();
+    }
 }
