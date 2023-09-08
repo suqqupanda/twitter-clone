@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Http\Requests\TweetRequest;
+
 
 class Tweet extends Model
 {
@@ -63,9 +65,26 @@ class Tweet extends Model
      * @param int $tweetId
      * @return Tweet|null
      */
-    public function getTweetById($tweetId): Tweet|null
+    public function getTweetById(int $tweetId): Tweet|null
     {
         // ツイートテーブルから指定したIDの情報を取得
         return Tweet::find($tweetId);
+    }
+
+    /**
+     * ツイートを更新
+     *
+     * @param string $tweetText
+     * @param integer $tweetId
+     * @return void
+     */
+    public function updateTweet(string $tweetText, int $tweetId): void
+    {
+        // メソッドを呼び出して結果を取得
+        $tweet = $this->getTweetById($tweetId);
+
+        $tweet->tweet = $tweetText;
+
+        $tweet->update();
     }
 }

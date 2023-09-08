@@ -61,12 +61,52 @@ class TweetController extends Controller
      * @param integer $tweetId
      * @return View
      */
-    public function show(int $tweetId): View
+    public function showTweet(int $tweetId): View
     {
         $tweetModel = new Tweet();
 
         $tweet = $tweetModel->getTweetById($tweetId);
 
         return view('tweet.show', ['tweet' => $tweet]);
+    }
+
+    /**
+     * ツイート編集画面を表示
+     *
+     * @param integer $tweetId
+     * @return View
+     */
+    public function editTweet(int $tweetId): View
+    {
+        $tweetModel = new Tweet();
+
+        $tweet = $tweetModel->getTweetById($tweetId);
+
+        return view('tweet.edit', ['tweet' => $tweet]);
+    }
+
+    /**
+     * 編集されたツイートを更新
+     *
+     * @param TweetRequest $request
+     * @param integer $tweetId
+     * @return RedirectResponse
+     */
+    public function updateTweet(TweetRequest $request, int $tweetId): RedirectResponse
+    {
+        // リクエストから必要なデータを抽出
+        $tweetText = $request->input('tweet');
+        
+        $tweetModel = new Tweet();
+        
+        // ツイートのユーザーIDとログインユーザーのIDを比較
+        if (Auth::id() !== $tweetModel->getTweetById($tweetId)->user_id) 
+        {
+            return redirect(route('tweet.list'))->with('error', 'You do not have permission to update this tweet.');
+        }
+
+        $tweetModel->updateTweet($tweetText, $tweetId);
+        
+        return redirect(route('tweet.list'))->with('success', 'Tweet updated successfully.');
     }
 }

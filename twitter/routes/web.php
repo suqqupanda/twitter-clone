@@ -37,7 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'mypage', 'as' => 'mypage'], function() {
         // マイページを表示
         Route::get('/', [UserController::class, 'showMypage'])->name('');
-        // マイページの編集画面を表示
+        // マイページを編集画面を表示
         Route::get('/edit', [UserController::class, 'editMypage'])->name('.edit');
         // 変更された情報を更新
         Route::put('/update', [UserController::class, 'updateMypage'])->name('.update');
@@ -53,6 +53,10 @@ Route::group(['middleware' => 'auth'], function () {
         // ツイート一覧を表示
         Route::get('/list', [TweetController::class, 'index'])->name('.list');
         // ツイート詳細を表示
-        Route::get('/show/{id}', [TweetController::class, 'show'])->name('.show');
+        Route::get('/show/{id}', [TweetController::class, 'showTweet'])->name('.show');
+        // ツイートの編集画面を表示
+        Route::get('/edit/{id}', [TweetController::class, 'editTweet'])->name('.edit');
+        // 変更された情報を更新
+        Route::put('/update/{id}', [TweetController::class, 'updateTweet'])->name('.update');
     });
 });
