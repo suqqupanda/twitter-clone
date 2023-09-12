@@ -120,25 +120,22 @@ class TweetController extends Controller
     {
         $tweet = new Tweet();
 
-        // ツイートが存在しない場合
-        if ($tweet->getTweetById($tweetId) === null)
+         // ツイートが存在しない場合
+        if (!$tweet = Tweet::find($tweetId))
         {
             return redirect(route('tweet.list'))->with('error', 'Tweet not found');
         }
-        // ツイートが存在する場合
-        else
+
+        // ツイートがログインしているユーザーのものではない場合
+        if (Auth::id() !== $tweet->user_id)
         {
-            // ツイートがログインしているユーザーのものではない場合
-            if (Auth::id() !== $tweet->getTweetById($tweetId)->user_id) 
-            {
-                return redirect(route('tweet.list'))->with('error', 'Tweet not found');
-            }
-            // ツイートが本人のものである場合
-            else
-            {
-                $tweet->deleteTweet($tweetId);
-                return redirect(route('tweet.list'));    
-            }
+            return redirect(route('tweet.list'))->with('error', 'You cannot delete tweets from others');
         }
+
+        // ツイートが本人のものである場合
+        $tweet->delete();
+
+        return redirect(route('tweet.list'));
+
     }
 }
