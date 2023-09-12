@@ -58,5 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/edit/{id}', [TweetController::class, 'editTweet'])->name('.edit');
         // 変更された情報を更新
         Route::put('/update/{id}', [TweetController::class, 'updateTweet'])->name('.update');
+        // ツイートを削除
+        Route::delete('/delete/{id}', [TweetController::class, 'deleteTweet'])->name('.delete');
     });
 });

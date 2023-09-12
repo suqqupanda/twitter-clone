@@ -109,4 +109,33 @@ class TweetController extends Controller
         
         return redirect(route('tweet.list'))->with('success', 'Tweet updated successfully.');
     }
+
+    /**
+     * ツイートを削除
+     *
+     * @param integer $tweetId
+     * @return RedirectResponse
+     */
+    public function deleteTweet(int $tweetId): RedirectResponse
+    {
+        $tweet = new Tweet();
+
+         // ツイートが存在しない場合
+        if (is_null($tweet->getTweetById($tweetId)))
+        {
+            return redirect(route('tweet.list'))->with('error', 'Tweet not found');
+        }
+
+        // ツイートがログインしているユーザーのものではない場合
+        if (Auth::id() !== $tweet->user_id)
+        {
+            return redirect(route('tweet.list'))->with('error', 'You cannot delete tweets from others');
+        }
+
+        // ツイートが本人のものである場合
+        $tweet->delete();
+
+        return redirect(route('tweet.list'));
+
+    }
 }

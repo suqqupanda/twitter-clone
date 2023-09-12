@@ -119,6 +119,7 @@ class UserController extends Controller
     public function deleteMypage(): RedirectResponse
     {
         $user = new User();
+        
         $user->deleteUser(Auth::id());
 
         return redirect()->route('/');

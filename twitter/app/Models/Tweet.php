@@ -87,4 +87,18 @@ class Tweet extends Model
 
         $tweet->update();
     }
+
+    /**
+     * ツイートを削除
+     *
+     * @param integer $tweetId
+     * @return void
+     */
+    public function deleteTweet(int $tweetId): void
+    {
+        // 指定したIDのツイートを取得
+        $tweet = $this->getTweetById($tweetId);
+
+        $tweet->delete();
+    }
 }
