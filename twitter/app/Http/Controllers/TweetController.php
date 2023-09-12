@@ -121,7 +121,7 @@ class TweetController extends Controller
         $tweet = new Tweet();
 
          // ツイートが存在しない場合
-        if (!$tweet = Tweet::find($tweetId))
+        if (is_null($tweet->getTweetById($tweetId)))
         {
             return redirect(route('tweet.list'))->with('error', 'Tweet not found');
         }
