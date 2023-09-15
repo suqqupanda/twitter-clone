@@ -29,9 +29,7 @@ class Tweet extends Model
      * @param string $tweet
      * @return void
      */
-    public function store(
-        string $tweet,
-    ): void
+    public function store(string $tweet,): void
     {
         $this->create([
             'user_id' => Auth::id(),
