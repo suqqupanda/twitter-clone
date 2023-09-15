@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\RedirectResponse;
 
 class Follower extends Model
 {
