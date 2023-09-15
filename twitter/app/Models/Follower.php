@@ -20,8 +20,13 @@ class Follower extends Model
         'follower_id',
     ];
 
-    // ユーザーをフォロー（自分のidとフォロワーのidをデータベースに保存）
-    public function store(int $followerId)
+    /**
+     * ユーザーをフォロー（自分のidとフォロワーのidをデータベースに保存）
+     *
+     * @param integer $followerId
+     * @return void
+     */
+    public function store(int $followerId): void
     {
         $this->create([
             'following_id' => Auth::id(),
@@ -29,8 +34,13 @@ class Follower extends Model
         ]);
     }
 
-    // ユーザーのフォローを解除（保存したidを削除）
-    public function deleteFollow(int $followerId)
+    /**
+     * ユーザーのフォローを解除（保存したidを削除）
+     *
+     * @param integer $followerId
+     * @return void
+     */
+    public function deleteFollow(int $followerId): void
     {
         $follower = Follower::where('following_id', Auth::id())
                             ->where('follower_id', $followerId)

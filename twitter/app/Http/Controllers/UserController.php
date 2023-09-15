@@ -126,8 +126,13 @@ class UserController extends Controller
         return redirect()->route('/');
     }
 
-    // ユーザーをフォロー
-    public function follow(int $followerId)
+    /**
+     * ユーザーをフォロー
+     *
+     * @param integer $followerId
+     * @return RedirectResponse
+     */
+    public function follow(int $followerId): RedirectResponse
     {
         $follow = new Follower();
 
@@ -136,8 +141,13 @@ class UserController extends Controller
         return redirect(route('users'));
     }
 
-    // ユーザのフォローを解除
-    public function unfollow(int $followerId)
+    /**
+     *  ユーザのフォローを解除
+     *
+     * @param integer $followerId
+     * @return RedirectResponse
+     */
+    public function unfollow(int $followerId): RedirectResponse
     {
         $follow = new Follower();
 
