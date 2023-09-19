@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Hash;
@@ -56,6 +57,26 @@ class User extends Authenticatable
     protected $dates = ['deleted_at'];
 
     /**
+     * ユーザーがフォローしているユーザーの一覧を取得
+     *
+     * @return BelongsToMany
+     */
+    public function following(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'followers', 'following_id', 'follower_id');
+    }
+
+    /**
+     * ユーザーをフォローしている他のユーザーの一覧を取得
+     *
+     * @return BelongsToMany
+     */
+    public function followers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'following_id');
+    }
+
+    /**
      * 新規登録
      *
      * @param string $name
@@ -88,7 +109,7 @@ class User extends Authenticatable
     }
 
     /**
-     * ユーザーのマイページを表示
+     * ログインしているユーザーに情報を取得
      * 
      * @return \App\Models\User|null Userモデルのインスタンスもしくはnull
      */

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EditUserRequest;
+use App\Models\Follower;
 use App\Http\Requests\SignupRequest;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
@@ -123,5 +124,35 @@ class UserController extends Controller
         $user->deleteUser(Auth::id());
 
         return redirect()->route('/');
+    }
+
+    /**
+     * ユーザーをフォロー
+     *
+     * @param integer $followerId
+     * @return RedirectResponse
+     */
+    public function follow(int $followerId): RedirectResponse
+    {
+        $follow = new Follower();
+
+        $follow->store($followerId);
+
+        return redirect(route('users'));
+    }
+
+    /**
+     *  ユーザのフォローを解除
+     *
+     * @param integer $followerId
+     * @return RedirectResponse
+     */
+    public function unfollow(int $followerId): RedirectResponse
+    {
+        $follow = new Follower();
+
+        $follow->deleteFollow($followerId);
+
+        return redirect(route('users'));
     }
 }
