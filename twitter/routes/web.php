@@ -67,5 +67,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/{id}', [UserController::class, 'follow'])->name('');
         // フォローを解除
         Route::delete('/delete/{id}', [UserController::class, 'unfollow'])->name('.delete');
+        // フォロー一覧を表示
+        Route::get('/followed', [UserController::class, 'followlist'])->name('.followlist');
+        // フォロワー一覧を表示
+        Route::get('/follower', [UserController::class, 'followerlist'])->name('.followerlist');
     });
 });

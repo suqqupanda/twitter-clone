@@ -155,4 +155,24 @@ class UserController extends Controller
 
         return redirect(route('users'));
     }
+
+    /**
+     * ログインしているユーザーがフォローしているユーザー名を表示
+     *
+     * @return view
+     */
+    public function followlist(): view
+    {
+        // ユーザーがフォローしているユーザーの一覧を取得して表示
+        $follows = Auth::user()->following;
+        return view('user.followlist', ['follows' => $follows]);
+
+    }
+
+    public function followerlist()
+    {
+        // ユーザーをフォローしているユーザーの一覧を取得して表示
+        $followers = Auth::User ()->followers;
+        return view('user.followerlist', ['followers' => $followers]);
+    }
 }
