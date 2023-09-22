@@ -169,7 +169,12 @@ class UserController extends Controller
 
     }
 
-    public function followerlist()
+    /**
+     * ログインしているユーザーをフォローしているユーザーを表示「
+     *
+     * @return view
+     */
+    public function followerlist(): view
     {
         // ユーザーをフォローしているユーザーの一覧を取得して表示
         $followers = Auth::User ()->followers;
