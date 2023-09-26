@@ -57,7 +57,7 @@ class User extends Authenticatable
     protected $dates = ['deleted_at'];
 
     /**
-     * ユーザーがフォローしているユーザーの一覧を取得
+     * ユーザーがフォローしているユーザーの一覧を取得（follower_idは自分がフォローした人のid）
      *
      * @return BelongsToMany
      */

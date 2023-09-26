@@ -69,7 +69,7 @@ class UserController extends Controller
 
         // ユーザー一覧を取得して表示
         $users = $userModel->getAllUsers();
-        return view('user.users', ['users' => $users]);
+        return view('user.users', compact('users'));
     }
 
     /**
@@ -84,7 +84,7 @@ class UserController extends Controller
 
         // ユーザーの情報を取得して表示
         $user = $userModel->getLoginUser();
-        return view('user.show', ['user' => $user]);
+        return view('user.show', compact('user'));
     }
 
     /**
@@ -154,5 +154,30 @@ class UserController extends Controller
         $follow->deleteFollow($followerId);
 
         return redirect(route('users'));
+    }
+
+    /**
+     * ログインしているユーザーがフォローしているユーザー名を表示
+     *
+     * @return View
+     */
+    public function followlist(): View
+    {
+        // ユーザーがフォローしているユーザーの一覧を取得して表示
+        $follows = Auth::user()->following;
+        return view('user.followlist', compact('follows'));
+
+    }
+
+    /**
+     * ログインしているユーザーをフォローしているユーザーを表示
+     *
+     * @return View
+     */
+    public function followerlist(): View
+    {
+        // ユーザーをフォローしているユーザーの一覧を取得して表示
+        $followers = Auth::User ()->followers;
+        return view('user.followerlist', compact('followers'));
     }
 }
