@@ -38,176 +38,47 @@
                                     @case('mypage.edit')
                                     <!-- home画面でのヘッダー -->
                                     <!-- マイページ編集画面でのヘッダー -->
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('tweet') }}">{{ __('Tweet') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('tweet.list') }}">{{ __('Tweetlist') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('follow.followlist') }}">{{ __('Followlist') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('follow.followerlist') }}">{{ __('Followerlist') }}</a>
-                                        </li>
+                                        @include('components.header_elements', ['headerInvisibleElements' => ['mypageEdit' => true]])
                                         @break
 
                                     @case('users')
                                     <!-- ユーザー一覧でのヘッダー -->
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('tweet') }}">{{ __('Tweet') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('tweet.list') }}">{{ __('Tweetlist') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('follow.followlist') }}">{{ __('Followlist') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('follow.followerlist') }}">{{ __('Followerlist') }}</a>
-                                        </li>
+                                        @include('components.header_elements', ['headerInvisibleElements' => ['userlist' => true]])
                                         @break
 
                                     @case('mypage')
                                     <!-- マイページでのヘッダー -->
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('mypage.edit') }}">{{ __('Edit') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('tweet') }}">{{ __('Tweet') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('tweet.list') }}">{{ __('Tweetlist') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('follow.followlist') }}">{{ __('Followlist') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('follow.followerlist') }}">{{ __('Followerlist') }}</a>
-                                        </li>
+                                        @include('components.header_elements', ['headerInvisibleElements' => ['mypage' => true]])
                                         @break
 
                                     @case('tweet')
                                     <!-- ツイート画面でのヘッダー -->
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('tweet.list') }}">{{ __('Tweetlist') }}</a>
-                                        </li>
+                                        @include('components.header_elements', ['headerInvisibleElements' => ['tweet' => true]])
                                         @break
 
                                     @case('tweet.list')
                                     <!-- ツイート一覧画面でのヘッダー -->
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('tweet') }}">{{ __('Tweet') }}</a>
-                                        </li>
+                                        @include('components.header_elements', ['headerInvisibleElements' => ['tweetlist' => true]])
                                         @break
 
                                     @case('tweet.show')
-                                    <!-- ツイート詳細画面でのヘッダー -->
-                                    <!-- ツイート編集のボタンを追加する -->
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('tweet') }}">{{ __('Tweet') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('tweet.list') }}">{{ __('Tweetlist') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('follow.followlist') }}">{{ __('Followlist') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('follow.followerlist') }}">{{ __('Followerlist') }}</a>
-                                        </li>
-                                        @break
-
                                     @case('tweet.edit')
                                     @case('tweet.delete')
+                                    <!-- ツイート詳細画面でのヘッダー -->
                                     <!-- ツイート編集画面でのヘッダー -->
                                     <!-- ツイート削除画面でのヘッダー -->
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('tweet') }}">{{ __('Tweet') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('tweet.list') }}">{{ __('Tweetlist') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('follow.followlist') }}">{{ __('Followlist') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('follow.followerlist') }}">{{ __('Followerlist') }}</a>
-                                        </li>
+                                    <!-- ツイート編集のボタンを追加する -->
+                                        @include('components.header_elements', ['headerInvisibleElements' => []])
                                         @break
 
                                     @case('follow.followlist')
                                     <!-- フォロー一覧画面でのヘッダー -->
-                                        <li class="nav-item">    
-                                        <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('tweet') }}">{{ __('Tweet') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('tweet.list') }}">{{ __('Tweetlist') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('follow.followerlist') }}">{{ __('Followerlist') }}</a>
-                                        </li>
+                                        @include('components.header_elements', ['headerInvisibleElements' => ['followlist' => true]])
                                         @break
 
                                     @case('follow.followerlist')
                                     <!-- フォロワー一覧画面でのヘッダー -->
-                                        <li class="nav-item">    
-                                        <a class="nav-link" href="{{ route('mypage') }}">{{ __('Mypage') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('users') }}">{{ __('Userlist') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('tweet') }}">{{ __('Tweet') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('tweet.list') }}">{{ __('Tweetlist') }}</a>
-                                        </li>
-                                        <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('follow.followlist') }}">{{ __('Followlist') }}</a>
-                                        </li>
+                                        @include('components.header_elements', ['headerInvisibleElements' => ['followerlist' => true]])
                                         @break
                                 @endswitch
                             @endauth
