@@ -51,10 +51,10 @@
                                             <a class="nav-link" href="{{ route('tweet.list') }}">{{ __('Tweetlist') }}</a>
                                         </li>
                                         <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('user.followlist') }}">{{ __('Followlist') }}</a>
+                                            <a class="nav-link" href="{{ route('follow.followlist') }}">{{ __('Followlist') }}</a>
                                         </li>
                                         <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('user.followerlist') }}">{{ __('Followerlist') }}</a>
+                                            <a class="nav-link" href="{{ route('follow.followerlist') }}">{{ __('Followerlist') }}</a>
                                         </li>
                                         @break
 
@@ -70,10 +70,10 @@
                                             <a class="nav-link" href="{{ route('tweet.list') }}">{{ __('Tweetlist') }}</a>
                                         </li>
                                         <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('user.followlist') }}">{{ __('Followlist') }}</a>
+                                            <a class="nav-link" href="{{ route('follow.followlist') }}">{{ __('Followlist') }}</a>
                                         </li>
                                         <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('user.followerlist') }}">{{ __('Followerlist') }}</a>
+                                            <a class="nav-link" href="{{ route('follow.followerlist') }}">{{ __('Followerlist') }}</a>
                                         </li>
                                         @break
 
@@ -92,10 +92,10 @@
                                             <a class="nav-link" href="{{ route('tweet.list') }}">{{ __('Tweetlist') }}</a>
                                         </li>
                                         <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('user.followlist') }}">{{ __('Followlist') }}</a>
+                                            <a class="nav-link" href="{{ route('follow.followlist') }}">{{ __('Followlist') }}</a>
                                         </li>
                                         <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('user.followerlist') }}">{{ __('Followerlist') }}</a>
+                                            <a class="nav-link" href="{{ route('follow.followerlist') }}">{{ __('Followerlist') }}</a>
                                         </li>
                                         @break
 
@@ -141,10 +141,10 @@
                                             <a class="nav-link" href="{{ route('tweet.list') }}">{{ __('Tweetlist') }}</a>
                                         </li>
                                         <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('user.followlist') }}">{{ __('Followlist') }}</a>
+                                            <a class="nav-link" href="{{ route('follow.followlist') }}">{{ __('Followlist') }}</a>
                                         </li>
                                         <li class="nav-item">    
-                                            <a class="nav-link" href="{{ route('user.followerlist') }}">{{ __('Followerlist') }}</a>
+                                            <a class="nav-link" href="{{ route('follow.followerlist') }}">{{ __('Followerlist') }}</a>
                                         </li>
                                         @break
 

@@ -1,12 +1,10 @@
 @extends('layouts.app')
 
+@section('title')
+    Follower List
+@endsection
+
 @section('content')
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Follower List</title>
-</head>
-<body>
     <h1>Follower List</h1>
     <ul>
         @foreach ($followers as $follower)
@@ -15,6 +13,4 @@
             </div>
         @endforeach
     </ul>
-</body>
-</html>
 @endsection

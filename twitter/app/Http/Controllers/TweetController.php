@@ -52,7 +52,7 @@ class TweetController extends Controller
         // ツイート一覧を取得して表示
         $tweets = $tweetModel->getAllTweets();
         
-        return view('tweet.list', ['tweets' => $tweets]);
+        return view('tweet.list', compact('tweets'));
     }
 
     /**
@@ -67,7 +67,7 @@ class TweetController extends Controller
 
         $tweet = $tweetModel->getTweetById($tweetId);
 
-        return view('tweet.show', ['tweet' => $tweet]);
+        return view('tweet.show', compact('tweet'));
     }
 
     /**
@@ -82,7 +82,7 @@ class TweetController extends Controller
 
         $tweet = $tweetModel->getTweetById($tweetId);
 
-        return view('tweet.edit', ['tweet' => $tweet]);
+        return view('tweet.edit', compact('tweet'));
     }
 
     /**
