@@ -106,7 +106,7 @@ class Tweet extends Model
      * Undocumented function
      *
      * @param Request $request
-     * @return 
+     * @return LengthAwarePaginator
      */
     public function searchTweet(Request $request): LengthAwarePaginator
     {
