@@ -138,4 +138,19 @@ class TweetController extends Controller
         return redirect(route('tweet.list'));
 
     }
+
+    /**
+     * 検索ワードが含まれるツイートを検索
+     *
+     * @param Request $request
+     * @return View
+     */
+    public function searchTweet(Request $request): View
+    {
+        $tweet = new Tweet();
+
+        $tweets = $tweet->searchTweet($request);
+
+        return view('tweet.search', compact('tweets'));
+    }
 }
