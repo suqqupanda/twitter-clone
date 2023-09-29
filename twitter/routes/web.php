@@ -60,6 +60,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/update/{id}', [TweetController::class, 'updateTweet'])->name('.update');
         // ツイートを削除
         Route::delete('/delete/{id}', [TweetController::class, 'deleteTweet'])->name('.delete');
+        // ツイート検索画面を表示
+        Route::get('/search', [TweetController::class, 'searchTweet'])->name('.search');
+        // ツイートの検索結果をクリア
+        Route::get('/search/clear', [TweetController::class, 'searchClear'])->name('.searchclear');
     });
 
     Route::group(['prefix' => 'follow', 'as' => 'follow'], function() {

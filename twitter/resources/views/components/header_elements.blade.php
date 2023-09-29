@@ -39,3 +39,9 @@
     <a class="nav-link" href="{{ route('follow.followerlist') }}">{{ __('Followerlist') }}</a>
 </li>
 @endif
+
+@if(empty($headerInvisibleElements['tweetsearch']) || !$headerInvisibleElements['tweetsearch'])
+<li class="nav-item">    
+    <a class="nav-link" href="{{ route('tweet.search') }}">{{ __('Search') }}</a>
+</li>
+@endif

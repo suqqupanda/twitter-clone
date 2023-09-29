@@ -80,6 +80,11 @@
                                     <!-- フォロワー一覧画面でのヘッダー -->
                                         @include('components.header_elements', ['headerInvisibleElements' => ['followerlist' => true]])
                                         @break
+
+                                    @case('tweet.search')
+                                    <!-- ツイート検索画面でのヘッダー -->
+                                        @include('components.header_elements', ['headerInvisibleElements' => ['tweetsearch' => true]])
+                                        @break
                                 @endswitch
                             @endauth
 

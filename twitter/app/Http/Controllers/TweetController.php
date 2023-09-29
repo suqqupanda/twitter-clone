@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Http\Requests\SearchRequest;
 use App\Models\Tweet;
 use App\Http\Requests\TweetRequest;
 use Illuminate\Support\Facades\Auth;
@@ -137,5 +138,38 @@ class TweetController extends Controller
 
         return redirect(route('tweet.list'));
 
+    }
+
+    /**
+     * 検索ワードが含まれるツイートを検索
+     *
+     * @param SearchRequest $request
+     * @return View
+     */
+    public function searchTweet(SearchRequest $request): View
+    {
+        $tweet = new Tweet();
+
+        if ($request->has('search'))
+        {
+            $tweets = $tweet->searchTweet($request->get('search'));
+        }
+
+        return view('tweet.search', compact('tweets'));
+    }
+
+    /**
+     * 検索クリア
+     *
+     * @return View
+     */
+    public function searchClear(): View
+    {
+        $tweetModel = new Tweet();
+
+        // ツイート一覧を取得して表示
+        $tweets = $tweetModel->getAllTweets();
+        
+        return view('tweet.search', compact('tweets'));
     }
 }

@@ -109,7 +109,7 @@ class User extends Authenticatable
     }
 
     /**
-     * ログインしているユーザーに情報を取得
+     * ログインしているユーザーの情報を取得
      * 
      * @return \App\Models\User|null Userモデルのインスタンスもしくはnull
      */

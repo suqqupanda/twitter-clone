@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use App\Http\Requests\TweetRequest;
 
 
@@ -98,5 +100,35 @@ class Tweet extends Model
         $tweet = $this->getTweetById($tweetId);
 
         $tweet->delete();
+    }
+
+    /**
+     * ツイートを検索
+     *
+     * @param Request $request
+     * @return LengthAwarePaginator
+     */
+    public function searchTweet(string $search)
+    {
+        // クエリビルダ
+        $query = Tweet::query();
+        
+        // 全角スペースを半角に変換
+        $spaceConversion = mb_convert_kana($search, 's');
+
+        // 単語を半角スペースで区切り、配列にする
+        $wordArraySearched = preg_split('/[\s,]+/', $spaceConversion, -1, PREG_SPLIT_NO_EMPTY);
+
+        // 単語をループで回し、ツイートと部分一致するものがあれば、$queryとして保持される
+        foreach($wordArraySearched as $value)
+        {
+            $query->where('tweet', 'like', '%'.$value.'%');
+        }
+
+        // 上記で取得した$queryをページネートにして変数$tweetsに代入
+        $tweets = $query->paginate(20);
+        
+
+        return $tweets;
     }
 }
