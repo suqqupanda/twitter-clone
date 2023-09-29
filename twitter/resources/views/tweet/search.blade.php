@@ -2,11 +2,11 @@
 
 @section('content')
 <form method="GET" action="{{ route('tweet.search') }}">
-    <input type="search" placeholder="検索ワードを入力" name="search" value="@if (isset($search)) {{ $search }} @endif">
+    <input type="search" placeholder="検索ワードを入力" name="search" value="{{ $search ?? '' }}">
     <div>
         <button type="submit">検索</button>
         <button>
-            <a href="{{ route('tweet.search') }}" class="text-white">
+            <a href="{{ route('tweet.searchclear') }}" class="text-white">
                 クリア
             </a>
         </button>

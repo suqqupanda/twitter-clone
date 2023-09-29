@@ -103,40 +103,31 @@ class Tweet extends Model
     }
 
     /**
-     * Undocumented function
+     * ツイートを検索
      *
      * @param Request $request
      * @return LengthAwarePaginator
      */
-    public function searchTweet(Request $request): LengthAwarePaginator
+    public function searchTweet(string $search)
     {
-        // ツイート一覧をページネートで取得
-        $tweets = Tweet::paginate(20);
-
-        // 検索フォームで入力された値を取得する
-        $search = $request->input('search');
-
         // クエリビルダ
         $query = Tweet::query();
+        
+        // 全角スペースを半角に変換
+        $spaceConversion = mb_convert_kana($search, 's');
 
-        // もし検索フォームにキーワードが入力されたら
-        if ($search)
+        // 単語を半角スペースで区切り、配列にする
+        $wordArraySearched = preg_split('/[\s,]+/', $spaceConversion, -1, PREG_SPLIT_NO_EMPTY);
+
+        // 単語をループで回し、ツイートと部分一致するものがあれば、$queryとして保持される
+        foreach($wordArraySearched as $value)
         {
-            // 全角スペースを半角に変換
-            $spaceConversion = mb_convert_kana($search, 's');
-
-            // 単語を半角スペースで区切り、配列にする
-            $wordArraySearched = preg_split('/[\s,]+/', $spaceConversion, -1, PREG_SPLIT_NO_EMPTY);
-
-            // 単語をループで回し、ツイートと部分一致するものがあれば、$queryとして保持される
-            foreach($wordArraySearched as $value)
-            {
-                $query->where('tweet', 'like', '%'.$value.'%');
-            }
-
-            // 上記で取得した$queryをページネートにして変数$tweetsに代入
-            $tweets = $query->paginate(20);
+            $query->where('tweet', 'like', '%'.$value.'%');
         }
+
+        // 上記で取得した$queryをページネートにして変数$tweetsに代入
+        $tweets = $query->paginate(20);
+        
 
         return $tweets;
     }
