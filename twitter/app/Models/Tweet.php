@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
@@ -24,6 +25,15 @@ class Tweet extends Model
         'user_id',
         'tweet',
     ];
+
+    /**
+     * ユーザーがいいねしているツイートの一覧を取得
+     * @return BelongsToMany
+     */
+    public function likes(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'likes', 'tweet_id', 'user_id');
+    }
 
     /**
      * ツイートを登録
