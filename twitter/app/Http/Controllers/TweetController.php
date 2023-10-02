@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Like;
 use App\Providers\RouteServiceProvider;
 use App\Http\Requests\SearchRequest;
 use App\Models\Tweet;
@@ -68,7 +69,11 @@ class TweetController extends Controller
 
         $tweet = $tweetModel->getTweetById($tweetId);
 
-        return view('tweet.show', compact('tweet'));
+        $like = new Like();
+
+        $likecount = $like->likeCount($tweetId);
+
+        return view('tweet.show', compact('tweet', 'likecount'));
     }
 
     /**
