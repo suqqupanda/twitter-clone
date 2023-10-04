@@ -20,6 +20,15 @@ class LikeController extends Controller
     public function like(int $tweetId): RedirectResponse
     {
         $like = new Like();
+
+        $tweet = new Tweet();
+
+         // ツイートが存在しない場合
+        if (is_null($tweet->getTweetById($tweetId)))
+        {
+            return redirect(route('tweet.list'))->with('error', 'Tweet not found');
+        }
+
         $like->store($tweetId);
 
         return redirect(route('tweet.show', ['id' => $tweetId]));
@@ -34,6 +43,15 @@ class LikeController extends Controller
     public function unlike(int $tweetId): RedirectResponse
     {
         $like = new Like();
+
+        $tweet = new Tweet();
+
+         // ツイートが存在しない場合
+        if (is_null($tweet->getTweetById($tweetId)))
+        {
+            return redirect(route('tweet.list'))->with('error', 'Tweet not found');
+        }
+
         $like->deleteLike($tweetId);
 
         return redirect(route('tweet.show', ['id' => $tweetId]));
