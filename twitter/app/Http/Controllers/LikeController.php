@@ -58,8 +58,12 @@ class LikeController extends Controller
         return redirect(route('tweet.show', ['id' => $tweetId]));
     }
 
-    // ログインしているユーザーがいいねしている一覧を表示
-    public function likelist()
+    /**
+     * ログインしているユーザーがいいねしている一覧を表示
+     *
+     * @return View
+     */
+    public function likelist(): View
     {
         $likes = Auth::user()->likes;
         return view('tweet.likelist', compact('likes'));
