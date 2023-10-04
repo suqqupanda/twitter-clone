@@ -43,6 +43,15 @@
 
     <div class="mt-4">
     <h3>リプライ</h3>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     @if ($tweet->replies->count() > 0)
         @foreach($tweet->replies as $reply)
             <div>

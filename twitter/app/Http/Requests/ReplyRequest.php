@@ -27,4 +27,11 @@ class ReplyRequest extends FormRequest
             'reply' => ['required', 'string', 'max:100'],
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'content.required' => '文字を1文字以上入力して下さい',
+        ];
+    }
 }
