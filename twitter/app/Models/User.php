@@ -77,6 +77,15 @@ class User extends Authenticatable
     }
 
     /**
+     * ツイートをいいねしているユーザーの一覧を取得
+     * @return BelongsToMany
+     */
+    public function likes(): BelongsToMany
+    {
+        return $this->belongsToMany(Tweet::class, 'likes', 'user_id', 'tweet_id');
+    }
+
+    /**
      * 新規登録
      *
      * @param string $name

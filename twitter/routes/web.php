@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TweetController;
@@ -76,4 +77,9 @@ Route::group(['middleware' => 'auth'], function () {
         // フォロワー一覧を表示
         Route::get('/follower', [UserController::class, 'followerlist'])->name('.followerlist');
     });
+
+    // いいね
+    Route::post('/like/{id}', [LikeController::class, 'like'])->name('like');
+    // いいねを解除
+    Route::delete('/unlike/{id}', [LikeController::class, 'unlike'])->name('unlike');
 });

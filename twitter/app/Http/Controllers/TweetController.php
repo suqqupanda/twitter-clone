@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Like;
 use App\Providers\RouteServiceProvider;
 use App\Http\Requests\SearchRequest;
 use App\Models\Tweet;
@@ -60,15 +61,25 @@ class TweetController extends Controller
      * ツイートの詳細を表示
      *
      * @param integer $tweetId
-     * @return View
+     * @return View|RedirectResponse
      */
-    public function showTweet(int $tweetId): View
+    public function showTweet(int $tweetId): View|RedirectResponse
     {
         $tweetModel = new Tweet();
 
         $tweet = $tweetModel->getTweetById($tweetId);
 
-        return view('tweet.show', compact('tweet'));
+         // ツイートが存在しない場合
+        if (is_null($tweet))
+        {
+            return redirect(route('tweet.list'))->with('error', 'Tweet not found');
+        }
+
+        $like = new Like();
+
+        $likecount = $like->countLike($tweetId);
+
+        return view('tweet.show', compact('tweet', 'likecount'));
     }
 
     /**
