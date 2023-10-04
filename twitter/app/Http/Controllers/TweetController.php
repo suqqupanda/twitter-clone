@@ -71,7 +71,7 @@ class TweetController extends Controller
 
         $like = new Like();
 
-        $likecount = $like->likeCount($tweetId);
+        $likecount = $like->countLike($tweetId);
 
         return view('tweet.show', compact('tweet', 'likecount'));
     }

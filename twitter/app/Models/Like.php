@@ -58,7 +58,7 @@ class Like extends Model
      * @param integer $tweetId
      * @return int
      */
-    public function likeCount(int $tweetId): int
+    public function countLike(int $tweetId): int
     {
         return $this->where('tweet_id', $tweetId)->count();
     }
