@@ -5,6 +5,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TweetController;
+use App\Http\Controllers\ReplyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,4 +83,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/like/{id}', [LikeController::class, 'like'])->name('like');
     // いいねを解除
     Route::delete('/unlike/{id}', [LikeController::class, 'unlike'])->name('unlike');
+
+
+
+    Route::group(['prefix' => 'reply', 'as' => 'reply'], function() {
+        // リプライの作成
+        Route::post('/reply/{id}', [ReplyController::class, 'createReply'])->name('');
+    });
 });

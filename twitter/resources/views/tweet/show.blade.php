@@ -31,5 +31,26 @@
             <button type="submit" class="btn btn-danger">Delete Tweet</button>
         </form>
     @endif
-</div>
+
+    <form action="{{ route('reply', ['id' => $tweet->id]) }}" method="POST">
+            @csrf
+            <div class="form-group">
+                <label for="body">リプライを追加</label>
+                <textarea name="reply" id="body" cols="30" rows="3" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">リプライする</button>
+    </form>
+
+    <div class="mt-4">
+    <h3>リプライ</h3>
+    @if ($tweet->replies)
+        @foreach($tweet->replies as $reply)
+            <div>
+                <strong>{{ $reply->user->name }}</strong>:
+                {{ $reply->reply }}
+            </div>
+        @endforeach
+    @else
+        <p>まだリプライはありません。</p>
+    @endif</div>
 @endsection
