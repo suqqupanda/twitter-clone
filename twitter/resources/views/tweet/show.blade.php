@@ -43,7 +43,7 @@
 
     <div class="mt-4">
     <h3>リプライ</h3>
-    @if ($tweet->replies)
+    @if ($tweet->replies->count() > 0)
         @foreach($tweet->replies as $reply)
             <div>
                 <strong>{{ $reply->user->name }}</strong>:
