@@ -31,7 +31,9 @@ class ReplyRequest extends FormRequest
     public function messages()
     {
         return [
-            'content.required' => '文字を1文字以上入力して下さい',
+            'reply.required' => 'リプライは必須項目です。',
+            'reply.string' => 'リプライは文字列で入力してください。',
+            'reply.max' => 'リプライは100文字以内で入力してください。',
         ];
     }
 }
