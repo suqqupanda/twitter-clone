@@ -81,10 +81,16 @@
                                         @include('components.header_elements', ['headerInvisibleElements' => ['followerlist' => true]])
                                         @break
 
-                                    @case('tweet.search')
+                                    @case('tweet.searchclear')
                                     <!-- ツイート検索画面でのヘッダー -->
                                         @include('components.header_elements', ['headerInvisibleElements' => ['tweetsearch' => true]])
                                         @break
+
+                                        @case('likelist')
+                                    <!-- いいね一覧画面でのヘッダー -->
+                                        @include('components.header_elements', ['headerInvisibleElements' => ['likelist' => true]])
+                                        @break
+
                                 @endswitch
                             @endauth
 
