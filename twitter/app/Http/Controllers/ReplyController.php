@@ -20,7 +20,7 @@ class ReplyController extends Controller
      * @param integer $tweetId
      * @return void
      */
-    public function createReply(ReplyRequest $request, int $tweetId)
+    public function create(ReplyRequest $request, int $tweetId)
     {
         $reply = new Reply();
 
@@ -43,7 +43,7 @@ class ReplyController extends Controller
      * @param integer $replyId
      * @return View|RedirectResponse
      */
-    public function editreply(int $replyId): View|RedirectResponse
+    public function edit(int $replyId): View|RedirectResponse
     {
         $replyModel = new Reply();
 
@@ -66,7 +66,7 @@ class ReplyController extends Controller
      * @param integer $replyId
      * @return RedirectResponse
      */
-    public function updateReply(ReplyRequest $request, int $replyId): RedirectResponse
+    public function update(ReplyRequest $request, int $replyId): RedirectResponse
     {
         $replyModel = new Reply();
         $reply = $replyModel->getReplyById($replyId);
@@ -85,7 +85,7 @@ class ReplyController extends Controller
         
         // リクエストから必要な情報を抽出
         $replyText = $request->input('reply');
-        
+
         $reply->updateReply($replyId, $replyText);
 
         return redirect(route('tweet.list'));
@@ -97,7 +97,7 @@ class ReplyController extends Controller
      * @param integer $replyId
      * @return RedirectResponse
      */
-    public function deleteReply(int $replyId): RedirectResponse
+    public function delete(int $replyId): RedirectResponse
     {
         $replyModel = new Reply();
         $reply = $replyModel->getReplyById($replyId);
