@@ -20,13 +20,13 @@
                 <input type="email" class="form-control" name="email" value="{{ $user->email }}" required>
             </div>
             
-            <button type="submit" class="btn btn-primary">Update Mypage</button>
+            <button type="submit" class="btn btn-primary my-1">Update Mypage</button>
         </form>
         <p> </p>
         <form action="{{ route('mypage.delete') }}" method="post">
             @csrf
             @method('delete')
-            <button type="submit" class="btn btn-danger">Delete Mypage</button>
+            <button type="submit" class="btn btn-danger my-1">Delete Mypage</button>
         </form>
     </div>
 @endsection

@@ -42,6 +42,12 @@
 
 @if(empty($headerInvisibleElements['tweetsearch']) || !$headerInvisibleElements['tweetsearch'])
 <li class="nav-item">    
-    <a class="nav-link" href="{{ route('tweet.search') }}">{{ __('Search') }}</a>
+    <a class="nav-link" href="{{ route('tweet.searchclear') }}">{{ __('TweetSearch') }}</a>
+</li>
+@endif
+
+@if(empty($headerInvisibleElements['likelist']) || !$headerInvisibleElements['likelist'])
+<li class="nav-item">    
+    <a class="nav-link" href="{{ route('likelist') }}">{{ __('Likelist') }}</a>
 </li>
 @endif
