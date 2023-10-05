@@ -43,6 +43,7 @@
 
     <div class="mt-4">
     <h3>リプライ</h3>
+    <!-- リプライする際にバリデーションを通らなかった場合 -->
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -52,14 +53,27 @@
         </ul>
     </div>
     @endif
+
     @if ($tweet->replies->count() > 0)
         @foreach($tweet->replies as $reply)
             <div>
                 <strong>{{ $reply->user->name }}</strong>:
                 {{ $reply->reply }}
+                <br></br>
+
+                <!-- リプライの持ち主であれば -->
+                @if ($reply->user->id === Auth::id())
+                <a href="{{ route('reply.edit', ['id' => $reply->id]) }}" class="btn btn-primary">Update Reply</a>
+                <form action="{{ route('reply.delete', ['id' => $reply->id]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger my-1">Delete Reply</button>
+                </form>
+                @endif
             </div>
         @endforeach
     @else
         <p>まだリプライはありません。</p>
-    @endif</div>
+    @endif
+    </div>
 @endsection

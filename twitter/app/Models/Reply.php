@@ -57,4 +57,47 @@ class Reply extends Model
             'reply' => $reply,
         ]);
     }
+
+    /**
+     * 特定のリプライを取得
+     *
+     * @param integer $replyId
+     * @return Reply|null
+     */
+    public function getReplyById(int $replyId): Reply|null
+    {
+        return Reply::find($replyId);
+    }
+
+    /**
+     * リプライを更新
+     *
+     * @param integer $replyId
+     * @param string $replyText
+     * @return void
+     */
+    public function updateReply(int $replyId, string $replyText): void
+    {
+        // 更新する特定のリプライを取得
+        $reply = $this->getReplyById($replyId);
+
+        $reply->reply = $replyText;
+
+        $reply->update();
+    }
+
+    /**
+     * リプライを削除
+     *
+     * @param integer $replyId
+     * @return void
+     */
+    public function deleteReply(int $replyId): void
+    {
+        // 削除する特定のリプライを取得
+        $reply = $this->getReplyById($replyId);
+
+        $reply->delete();
+    }
+
 }

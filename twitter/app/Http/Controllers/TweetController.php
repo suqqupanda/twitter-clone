@@ -148,7 +148,6 @@ class TweetController extends Controller
         $tweet->delete();
 
         return redirect(route('tweet.list'));
-
     }
 
     /**
