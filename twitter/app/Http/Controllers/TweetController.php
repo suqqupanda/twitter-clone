@@ -69,7 +69,7 @@ class TweetController extends Controller
 
         $tweet = $tweetModel->getTweetById($tweetId);
 
-         // ツイートが存在しない場合
+        // ツイートが存在しない場合
         if (is_null($tweet))
         {
             return redirect(route('tweet.list'))->with('error', 'Tweet not found');
@@ -148,7 +148,6 @@ class TweetController extends Controller
         $tweet->delete();
 
         return redirect(route('tweet.list'));
-
     }
 
     /**

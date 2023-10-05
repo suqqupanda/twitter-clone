@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
+use App\Http\Requests\TweetRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use App\Http\Requests\TweetRequest;
 
 
 class Tweet extends Model
@@ -33,6 +34,16 @@ class Tweet extends Model
     public function likes(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'likes', 'tweet_id', 'user_id');
+    }
+
+    /**
+     * リプライとのリレーション
+     *
+     * @return hasMany
+     */
+    public function replies(): hasMany
+    {
+        return $this->hasMany(Reply::class);
     }
 
     /**

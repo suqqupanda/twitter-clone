@@ -5,6 +5,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TweetController;
+use App\Http\Controllers\ReplyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,4 +85,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/unlike/{id}', [LikeController::class, 'unlike'])->name('unlike');
     // いいねの一覧を表示
     Route::get('/likelist', [LikeController::class, 'likelist'])->name('likelist');
+
+
+    Route::group(['prefix' => 'reply', 'as' => 'reply'], function() {
+        // リプライの作成
+        Route::post('/create/{id}', [ReplyController::class, 'create'])->name('.create');
+        // リプライ編集画面の表示
+        Route::get('/edit/{id}', [ReplyController::class, 'edit'])->name('.edit');
+        // リプライの更新
+        Route::put('/update/{id}', [ReplyController::class, 'update'])->name('.update');
+        // リプライの削除
+        Route::delete('/delete/{id}', [ReplyController::class, 'delete'])->name('.delete');
+    });
 });
