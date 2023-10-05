@@ -59,8 +59,6 @@ class ReplyController extends Controller
         return view('tweet.replyedit', compact('reply'));
     }
 
-
-    
     /**
      * リプライを更新
      *
