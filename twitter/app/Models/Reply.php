@@ -81,6 +81,12 @@ class Reply extends Model
         // 更新する特定のリプライを取得
         $reply = $this->getReplyById($replyId);
 
+        // リプライが存在しない場合
+        if (is_null($reply)) 
+        {
+            return redirect(route('tweet.list'))->with('error', 'Reply not found');
+        }
+
         $reply->reply = $replyText;
 
         $reply->update();
