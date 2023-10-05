@@ -16,7 +16,7 @@ class ReplyController extends Controller
     /**
      * リプライを作成
      *
-     * @param Request $request
+     * @param ReplyRequest $request
      * @param integer $tweetId
      * @return void
      */
