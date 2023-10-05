@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -35,7 +36,12 @@ class Tweet extends Model
         return $this->belongsToMany(User::class, 'likes', 'tweet_id', 'user_id');
     }
 
-    public function replies()
+    /**
+     * リプライとのリレーション
+     *
+     * @return hasMany
+     */
+    public function replies(): hasMany
     {
         return $this->hasMany(Reply::class);
     }
