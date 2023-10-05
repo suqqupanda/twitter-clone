@@ -86,6 +86,7 @@ Route::group(['middleware' => 'auth'], function () {
     // いいねの一覧を表示
     Route::get('/likelist', [LikeController::class, 'likelist'])->name('likelist');
 
+
     Route::group(['prefix' => 'reply', 'as' => 'reply'], function() {
         // リプライの作成
         Route::post('/create/{id}', [ReplyController::class, 'create'])->name('.create');
