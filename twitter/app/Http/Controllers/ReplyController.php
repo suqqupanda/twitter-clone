@@ -68,9 +68,6 @@ class ReplyController extends Controller
      */
     public function updateReply(ReplyRequest $request, int $replyId): RedirectResponse
     {
-        // リクエストから必要な情報を抽出
-        $replyText = $request->input('reply');
-
         $replyModel = new Reply();
         $reply = $replyModel->getReplyById($replyId);
 
@@ -85,6 +82,9 @@ class ReplyController extends Controller
         {
             return redirect(route('tweet.list'))->with('error', 'You do not have permission to update this reply.');
         }
+        
+        // リクエストから必要な情報を抽出
+        $replyText = $request->input('reply');
         
         $reply->updateReply($replyId, $replyText);
 
