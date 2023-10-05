@@ -34,7 +34,7 @@
         </form>
     @endif
 
-    <form action="{{ route('reply', ['id' => $tweet->id]) }}" method="POST">
+    <form action="{{ route('reply.create', ['id' => $tweet->id]) }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="body">リプライを追加</label>

@@ -88,7 +88,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'reply', 'as' => 'reply'], function() {
         // リプライの作成
-        Route::post('/{id}', [ReplyController::class, 'create'])->name('');
+        Route::post('/create/{id}', [ReplyController::class, 'create'])->name('.create');
         // リプライ編集画面の表示
         Route::get('/edit/{id}', [ReplyController::class, 'edit'])->name('.edit');
         // リプライの更新
