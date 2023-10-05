@@ -86,7 +86,7 @@
                                         @include('components.header_elements', ['headerInvisibleElements' => ['tweetsearch' => true]])
                                         @break
 
-                                        @case('likelist')
+                                    @case('likelist')
                                     <!-- いいね一覧画面でのヘッダー -->
                                         @include('components.header_elements', ['headerInvisibleElements' => ['likelist' => true]])
                                         @break
