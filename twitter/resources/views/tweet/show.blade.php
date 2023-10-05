@@ -6,6 +6,7 @@
     <p><strong>ユーザー名:</strong> {{ $tweet->user->name }}</p>
     <p><strong>ツイートした日付:</strong> {{ $tweet->created_at->format('Y-m-d H:i:s') }}</p>
     <p><strong>ツイート内容:</strong> {{ $tweet->tweet }}</p>
+    <div>
     <!-- いいねしている場合 -->
     @if(Auth::user()->likes->contains($tweet->id))
         <form action="{{ route('unlike', ['id' => $tweet->id]) }}" method="POST" class="d-inline-block">
@@ -22,13 +23,14 @@
     @endif
 
     <span>{{ $likecount }}</span>
+    </div>
 
     @if ($tweet->user->id === Auth::id())
-        <a href="{{ route('tweet.edit', ['id' => $tweet->id]) }}" class="btn btn-primary">Update Tweet</a>
+        <a href="{{ route('tweet.edit', ['id' => $tweet->id]) }}" class="btn btn-primary my-1">Update Tweet</a>
         <form action="{{ route('tweet.delete', ['id' => $tweet->id]) }}" method="POST">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger">Delete Tweet</button>
+            <button type="submit" class="btn btn-danger my-1">Delete Tweet</button>
         </form>
     @endif
 

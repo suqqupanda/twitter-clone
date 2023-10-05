@@ -83,8 +83,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/like/{id}', [LikeController::class, 'like'])->name('like');
     // いいねを解除
     Route::delete('/unlike/{id}', [LikeController::class, 'unlike'])->name('unlike');
-
-
+    // いいねの一覧を表示
+    Route::get('/likelist', [LikeController::class, 'likelist'])->name('likelist');
 
     Route::group(['prefix' => 'reply', 'as' => 'reply'], function() {
         // リプライの作成
